@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CyberShield Hardener — Free Windows Security Tool for NGOs</title>
+<meta name="description" content="CyberShield Hardener is a free Windows helper tool that runs a curated set of PowerShell hardening commands — firewall, Defender, BitLocker, updates — in one click. Built for NGOs without a full-time sysadmin." />
+<meta name="keywords" content="Windows hardening tool, PowerShell security, NGO cybersecurity, Defender check, BitLocker, free security tool, nonprofit IT, incident response Windows" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://cybershield.example/windows-tool.html" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="CyberShield Hardener — Free Windows Security Tool" />
+<meta property="og:description" content="One-click PowerShell hardening for Windows, built for NGOs. Audit Defender, firewall, BitLocker, accounts and more." />
+<meta property="og:url" content="https://cybershield.example/windows-tool.html" />
+<meta property="og:site_name" content="CyberShield" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="CyberShield Hardener — Windows Security Tool" />
+<meta name="twitter:description" content="Free PowerShell hardening tool for NGO-run Windows PCs." />
+
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="%237c5cff"/><stop offset="1" stop-color="%2322d3ee"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(%23g)"/><text x="50%25" y="54%25" font-family="Inter,Arial" font-size="26" font-weight="900" text-anchor="middle" fill="%230b1020">CS</text></svg>' />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"SoftwareApplication",
+  "name":"CyberShield Hardener",
+  "operatingSystem":"Windows 10, Windows 11",
+  "applicationCategory":"SecurityApplication",
+  "description":"A free Windows GUI that runs a curated set of PowerShell hardening commands for NGO-owned computers.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "softwareVersion":"0.1",
+  "isAccessibleForFree":true,
+  "url":"https://cybershield.example/windows-tool.html"
+}
+</script>
+<style>
+  :root{
+    --bg:#0b1020;
+    --bg-2:#0f1530;
+    --panel:#141a35;
+    --panel-2:#1b2348;
+    --text:#e7ecff;
+    --muted:#9aa3c7;
+    --brand:#7c5cff;
+    --brand-2:#22d3ee;
+    --good:#22c55e;
+    --warn:#f59e0b;
+    --bad:#ef4444;
+    --border:#2a3160;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:radial-gradient(1200px 800px at 10% -10%,#1a225a 0%,transparent 60%),radial-gradient(900px 700px at 110% 10%,#163a4a 0%,transparent 55%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+  a{color:var(--brand-2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1100px;margin:0 auto;padding:24px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+  .logo{display:flex;align-items:center;gap:12px;font-weight:700}
+  .logo-mark{width:36px;height:36px;border-radius:10px;background:conic-gradient(from 200deg,#7c5cff,#22d3ee,#7c5cff);display:grid;place-items:center;color:#0b1020;font-weight:900;box-shadow:var(--shadow)}
+  nav a{margin-left:18px;color:var(--muted);font-weight:500}
+  nav a:hover{color:var(--text)}
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-weight:600;margin-bottom:14px}
+  .back:hover{color:var(--text);text-decoration:none}
+  .hero{padding:20px 0 24px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#bbf7d0;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:16px}
+  .pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--good)}
+  .hero h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:0 0 12px}
+  .hero p.lead{color:var(--muted);font-size:17px;margin:0 0 20px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+  .btn{appearance:none;border:0;cursor:pointer;padding:12px 18px;border-radius:12px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px;transition:transform .08s ease,box-shadow .15s ease,background .2s ease;text-decoration:none}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:linear-gradient(135deg,var(--brand),#5b8cff);color:white;box-shadow:0 8px 24px rgba(124,92,255,.35)}
+  .btn-primary:hover{box-shadow:0 12px 28px rgba(124,92,255,.5);text-decoration:none}
+  .btn-good{background:linear-gradient(135deg,#22c55e,#10b981);color:white;box-shadow:0 8px 24px rgba(34,197,94,.3)}
+  .btn-good:hover{box-shadow:0 12px 28px rgba(34,197,94,.45);text-decoration:none}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .btn-ghost:hover{background:rgba(255,255,255,.04);text-decoration:none}
+  .card{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .section{padding:22px;margin-bottom:14px}
+  .section h3{margin:0 0 10px;display:flex;align-items:center;gap:10px}
+  .section h3 .dot{width:10px;height:10px;border-radius:50%;background:var(--brand-2)}
+  /* App preview */
+  .app-preview{padding:22px;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;min-height:320px;background:radial-gradient(400px 200px at 50% 0%,rgba(124,92,255,.2),transparent 70%),linear-gradient(180deg,var(--panel),var(--panel-2))}
+  .win-window{width:100%;max-width:380px;background:#0d132b;border:1px solid #2c356a;border-radius:10px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.5)}
+  .win-top{background:#11182f;border-bottom:1px solid #2a3160;padding:8px 12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+  .win-dot{width:10px;height:10px;border-radius:50%;background:#ef4444}
+  .win-dot.y{background:#f59e0b}.win-dot.g{background:#22c55e}
+  .win-body{padding:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#a5f3fc}
+  .win-body .line{margin-bottom:4px}
+  .win-body .ok{color:#86efac}
+  .win-body .warn{color:#fcd34d}
+  .version-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.3);padding:4px 10px;border-radius:999px;font-size:12px;color:#a5f3fc;font-weight:600}
+  /* Feature grid */
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px}
+  .feature{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .feature .ico{font-size:22px;margin-bottom:6px}
+  .feature strong{display:block;margin-bottom:4px}
+  .feature span{color:var(--muted);font-size:14px}
+  /* Command preview */
+  .cmds{display:grid;gap:8px;margin-top:8px}
+  .cmd{background:#0e1430;border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#cfd6ff;display:flex;gap:10px;align-items:flex-start}
+  .cmd .tag{min-width:80px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding-top:2px}
+  /* Warn banner */
+  .warn-banner{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.35);color:#fde68a;border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+  .warn-banner .ico{font-size:22px;line-height:1}
+  /* Steps */
+  .steps{counter-reset:s;display:grid;gap:10px;margin-top:6px}
+  .steps .s{counter-increment:s;position:relative;padding:12px 12px 12px 46px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px}
+  .steps .s::before{content:counter(s);position:absolute;left:12px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b1020;font-weight:900;display:grid;place-items:center;font-size:13px}
+  .muted{color:var(--muted)}
+  footer{padding:30px 0 40px;color:var(--muted);text-align:center;font-size:13px;border-top:1px solid var(--border);margin-top:30px}
+  @media (max-width:780px){.hero{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">
+      <div class="logo-mark">CS</div>
+      <div>
+        <div>CyberShield</div>
+        <div style="color:var(--muted);font-size:12px;font-weight:500">NGO Incident Response Toolkit</div>
+      </div>
+    </div>
+    <nav>
+      <a href="ngo-incident-response.html">Assessment</a>
+      <a href="ngo-incident-response.html#resources">Resources</a>
+    </nav>
+  </header>
+
+  <a class="back" href="ngo-incident-response.html">← Back to action plan</a>
+
+  <section class="hero">
+    <div>
+      <span class="pill">Recommended add-on for Windows users</span>
+      <h1>CyberShield Hardener <br/>— the Windows helper tool</h1>
+      <p class="lead">A tiny desktop app that runs a curated set of PowerShell hardening commands on your PC — the same ones your IT team would type by hand — in one click. Built for NGOs who don't have a full-time sysadmin.</p>
+      <div class="cta">
+        <a href="#" class="btn btn-good" onclick="event.preventDefault();alert('The Windows installer is coming soon. This download is currently a placeholder.');">⬇ Download for Windows (.exe)</a>
+        <a href="#what-it-does" class="btn btn-ghost">See what it does</a>
+      </div>
+      <p class="muted" style="font-size:13px;margin-top:14px">
+        <span class="version-badge">v0.1 · Preview</span>
+        &nbsp;Free, open source, requires Windows 10 / 11.
+      </p>
+    </div>
+    <div class="card app-preview">
+      <div class="win-window">
+        <div class="win-top">
+          <div class="win-dot"></div><div class="win-dot y"></div><div class="win-dot g"></div>
+          <span style="margin-left:8px">CyberShield Hardener</span>
+        </div>
+        <div class="win-body">
+          <div class="line">&gt; Running baseline hardening…</div>
+          <div class="line ok">[✓] Windows Defender: Real-time protection ON</div>
+          <div class="line ok">[✓] Firewall profiles: Public/Private enabled</div>
+          <div class="line ok">[✓] SmartScreen: enabled</div>
+          <div class="line warn">[!] BitLocker: OS drive not encrypted</div>
+          <div class="line">&gt; Ready — 12 checks available</div>
+        </div>
+      </div>
+      <div class="muted" style="font-size:12px;text-align:center">Preview of the desktop app window</div>
+    </div>
+  </section>
+
+  <div class="warn-banner">
+    <div class="ico">⚠</div>
+    <div>
+      <strong>This is a preview page.</strong> The installer is not yet published — the Download button is a placeholder. Once the app ships, clicking it will deliver a signed <code>CyberShield-Hardener.exe</code> that runs the PowerShell routines below with your confirmation.
+    </div>
+  </div>
+
+  <section id="what-it-does" class="card section">
+    <h3><span class="dot"></span>What the tool does</h3>
+    <p class="muted" style="margin-top:0">CyberShield Hardener is a small GUI on top of PowerShell. It asks your permission before each action, shows you the exact command it will run, and logs everything it does so your IT person can review it later.</p>
+    <div class="features">
+      <div class="feature"><div class="ico">🛡</div><strong>Windows Defender sweep</strong><span>Verifies real-time protection, signature freshness, and launches a quick scan.</span></div>
+      <div class="feature"><div class="ico">🔥</div><strong>Firewall audit</strong><span>Confirms all three firewall profiles are enabled and lists risky inbound rules.</span></div>
+      <div class="feature"><div class="ico">🔑</div><strong>BitLocker check</strong><span>Reports drive encryption status and offers to enable it on the OS volume.</span></div>
+      <div class="feature"><div class="ico">📦</div><strong>Update status</strong><span>Lists pending Windows updates and missing security patches.</span></div>
+      <div class="feature"><div class="ico">👥</div><strong>User account review</strong><span>Shows local admins, enabled guest accounts, and weak password policies.</span></div>
+      <div class="feature"><div class="ico">🧹</div><strong>Startup cleanup</strong><span>Lists unknown startup programs and scheduled tasks for easy review.</span></div>
+      <div class="feature"><div class="ico">🌐</div><strong>DNS & network</strong><span>Flags suspicious DNS settings, proxy overrides, and unknown hosts file entries.</span></div>
+      <div class="feature"><div class="ico">📜</div><strong>Evidence bundle</strong><span>Exports a signed .zip of logs you can send to an incident-response helpline.</span></div>
+    </div>
+  </section>
+
+  <section class="card section">
+    <h3><span class="dot"></span>Example commands it will run</h3>
+    <p class="muted" style="margin-top:0">Every command requires your click to confirm. Nothing runs silently in the background.</p>
+    <div class="cmds">
+      <div class="cmd"><span class="tag">Defender</span><span>Get-MpComputerStatus | Select-Object AMServiceEnabled, RealTimeProtectionEnabled, AntivirusSignatureLastUpdated</span></div>
+      <div class="cmd"><span class="tag">Firewall</span><span>Get-NetFirewallProfile | Select-Object Name, Enabled</span></div>
+      <div class="cmd"><span class="tag">BitLocker</span><span>Get-BitLockerVolume | Select-Object MountPoint, VolumeStatus, ProtectionStatus</span></div>
+      <div class="cmd"><span class="tag">Updates</span><span>Get-WindowsUpdateLog; Get-HotFix | Sort-Object InstalledOn -Descending | Select -First 10</span></div>
+      <div class="cmd"><span class="tag">Accounts</span><span>Get-LocalUser | Where-Object Enabled -eq $true; Get-LocalGroupMember -Group "Administrators"</span></div>
+      <div class="cmd"><span class="tag">Startup</span><span>Get-CimInstance Win32_StartupCommand | Select-Object Name, Command, Location, User</span></div>
+      <div class="cmd"><span class="tag">Network</span><span>Get-DnsClientServerAddress; Get-NetIPConfiguration; Get-Content $env:windir\System32\drivers\etc\hosts</span></div>
+      <div class="cmd"><span class="tag">Evidence</span><span>Compress-Archive -Path $env:TEMP\cybershield-logs -DestinationPath $HOME\Desktop\CyberShield-Evidence.zip</span></div>
+    </div>
+  </section>
+
+  <section id="download" class="card section">
+    <h3><span class="dot"></span>Download &amp; install</h3>
+    <div class="steps">
+      <div class="s"><strong>Download the installer.</strong> <span class="muted">A signed <code>.exe</code> (~8 MB) will be published here soon.</span></div>
+      <div class="s"><strong>Verify the signature.</strong> Right-click the file → Properties → Digital Signatures, and confirm it's signed by "CyberShield Project".</div>
+      <div class="s"><strong>Run as administrator.</strong> Most hardening commands need elevated privileges.</div>
+      <div class="s"><strong>Pick the checks you want.</strong> Each one shows the PowerShell it will run and asks for confirmation.</div>
+      <div class="s"><strong>Export the evidence bundle.</strong> Attach it to your CyberShield action plan when asking an expert for help.</div>
+    </div>
+    <div class="cta" style="margin-top:16px">
+      <a href="#" class="btn btn-good" onclick="event.preventDefault();alert('The Windows installer is coming soon. This download is currently a placeholder.');">⬇ Download CyberShield-Hardener.exe</a>
+      <a href="ngo-incident-response.html" class="btn btn-ghost">← Return to your action plan</a>
+    </div>
+    <p class="muted" style="font-size:13px;margin-top:14px">macOS and Linux helpers are on the roadmap. If you'd like to help port the tool, open an issue in the project repository.</p>
+  </section>
+
+  <section class="card section">
+    <h3><span class="dot"></span>Safety &amp; privacy</h3>
+    <p style="margin:0 0 8px">CyberShield Hardener is designed with NGO threat models in mind:</p>
+    <ul style="margin:0;padding-left:18px;color:var(--muted)">
+      <li>Runs entirely on your computer — no data is uploaded anywhere.</li>
+      <li>Open source so anyone (your tech-savvy volunteer, Access Now, a pen tester) can audit the code.</li>
+      <li>Every action is logged locally so changes can be reviewed or reverted.</li>
+      <li>Works offline, which matters if your Wi-Fi is still considered hostile.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>CyberShield Hardener does not replace a professional incident response. If your NGO is under active attack, contact <a href="mailto:help@accessnow.org">help@accessnow.org</a> immediately.</p>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CyberShield — NGO Incident Response Action Plan Builder | Free Cybersecurity Toolkit</title>
+<meta name="description" content="CyberShield is a free incident-response toolkit for NGOs, activists, journalists and humanitarian teams. Answer a few questions about a suspected hack and get a tailored, step-by-step cybersecurity action plan in minutes." />
+<meta name="keywords" content="NGO cybersecurity, incident response, hacked devices, civil society security, digital security, action plan, nonprofit cyber attack, ransomware response, phishing help, journalist security" />
+<meta name="author" content="CyberShield Project" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://cybershield.example/ngo-incident-response.html" />
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="CyberShield — NGO Incident Response Action Plan Builder" />
+<meta property="og:description" content="Free, step-by-step incident response for NGOs. Answer a few questions and get a tailored plan to contain the breach, recover access, and prevent the next one." />
+<meta property="og:url" content="https://cybershield.example/ngo-incident-response.html" />
+<meta property="og:site_name" content="CyberShield" />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="CyberShield — NGO Incident Response" />
+<meta name="twitter:description" content="Your devices were hacked. Build a tailored cybersecurity action plan in 5 minutes. Free for every NGO." />
+
+<!-- Favicon (inline SVG — renders CS shield) -->
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="%237c5cff"/><stop offset="1" stop-color="%2322d3ee"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(%23g)"/><text x="50%25" y="54%25" font-family="Inter,Arial" font-size="26" font-weight="900" text-anchor="middle" fill="%230b1020">CS</text></svg>' />
+
+<!-- Structured data: SoftwareApplication / WebApplication schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"CyberShield",
+  "alternateName":"CyberShield NGO Incident Response Toolkit",
+  "description":"A free, interactive incident-response builder that generates a tailored cybersecurity action plan for NGOs, activists, journalists and humanitarian teams after a suspected hack.",
+  "applicationCategory":"SecurityApplication",
+  "operatingSystem":"Any (web browser)",
+  "browserRequirements":"Requires JavaScript. Requires HTML5.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "audience":{"@type":"Audience","audienceType":"NGOs, non-profits, activists, journalists, humanitarian workers"},
+  "url":"https://cybershield.example/ngo-incident-response.html",
+  "inLanguage":"en",
+  "isAccessibleForFree":true
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What should I do first when my NGO devices are hacked?","acceptedAnswer":{"@type":"Answer","text":"Stay calm, disconnect affected devices from the internet but keep them powered on, and coordinate from a clean device. Do not change passwords from a compromised machine."}},
+    {"@type":"Question","name":"Is CyberShield free for NGOs?","acceptedAnswer":{"@type":"Answer","text":"Yes. CyberShield is free for every NGO, non-profit, activist, journalist or humanitarian team, with no registration required."}},
+    {"@type":"Question","name":"Does CyberShield replace professional incident response?","acceptedAnswer":{"@type":"Answer","text":"No. CyberShield helps you organise a first response. For serious incidents, contact Access Now's Digital Security Helpline, Front Line Defenders, or your local CERT."}}
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#0b1020;
+    --bg-2:#0f1530;
+    --panel:#141a35;
+    --panel-2:#1b2348;
+    --text:#e7ecff;
+    --muted:#9aa3c7;
+    --brand:#7c5cff;
+    --brand-2:#22d3ee;
+    --good:#22c55e;
+    --warn:#f59e0b;
+    --bad:#ef4444;
+    --border:#2a3160;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:radial-gradient(1200px 800px at 10% -10%, #1a225a 0%, transparent 60%),radial-gradient(900px 700px at 110% 10%, #163a4a 0%, transparent 55%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+  a{color:var(--brand-2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1100px;margin:0 auto;padding:24px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+  .logo{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px}
+  .logo-mark{width:36px;height:36px;border-radius:10px;background:conic-gradient(from 200deg,#7c5cff,#22d3ee,#7c5cff);display:grid;place-items:center;color:#0b1020;font-weight:900;box-shadow:var(--shadow)}
+  nav{display:flex;align-items:center;gap:10px}
+  nav a{margin-left:8px;color:var(--muted);font-weight:500}
+  nav a:hover{color:var(--text)}
+  .nav-download{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#22c55e,#10b981);color:white !important;padding:9px 14px;border-radius:10px;font-weight:700;font-size:14px;box-shadow:0 6px 16px rgba(34,197,94,.28);transition:box-shadow .2s ease,transform .08s ease;margin-left:14px}
+  .nav-download:hover{box-shadow:0 10px 22px rgba(34,197,94,.45);text-decoration:none}
+  .nav-download:active{transform:translateY(1px)}
+  @media (max-width:640px){.nav-download .long{display:none}}
+  .hero{padding:40px 0 24px;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start}
+  .hero-right{display:flex;flex-direction:column;gap:22px;margin-top:-8px}
+  .hero-stats{padding:8px 0 56px}
+  .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:0 0 12px}
+  .hero p{color:var(--muted);font-size:18px;margin:0 0 20px}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(124,92,255,.12);border:1px solid rgba(124,92,255,.35);color:#cbbfff;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:16px}
+  .pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{appearance:none;border:0;cursor:pointer;padding:12px 18px;border-radius:12px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px;transition:transform .08s ease,box-shadow .15s ease,background .2s ease}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:linear-gradient(135deg,var(--brand),#5b8cff);color:white;box-shadow:0 8px 24px rgba(124,92,255,.35)}
+  .btn-primary:hover{box-shadow:0 12px 28px rgba(124,92,255,.5)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .btn-ghost:hover{background:rgba(255,255,255,.04)}
+  .btn:disabled,.btn[disabled]{opacity:.45;cursor:not-allowed;filter:grayscale(.3);box-shadow:none}
+  .btn:disabled:hover,.btn[disabled]:hover{box-shadow:none}
+  .btn-danger{background:linear-gradient(135deg,#ef4444,#f97316);color:white}
+  .btn-good{background:linear-gradient(135deg,#22c55e,#10b981);color:white}
+  .card{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .hero-card{padding:24px}
+  .hero-card h3{margin:0 0 6px}
+  .hero-card p{color:var(--muted);margin:0 0 14px}
+  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;justify-content:center;justify-items:center;max-width:720px;margin:0 auto}
+  .stat{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:14px 18px;text-align:center;width:100%}
+  .stat strong{display:block;font-size:20px}
+  .stat span{color:var(--muted);font-size:12px}
+  .tips-card{padding:0;background:transparent;border:0;box-shadow:none}
+  .tips-grid{display:grid;gap:10px}
+  .tip{position:relative;background:rgba(124,92,255,.08);border:1px solid rgba(124,92,255,.28);border-radius:12px;padding:12px 14px 12px 42px;color:#e7ecff;font-size:14px;line-height:1.45}
+  .tip::before{content:"!";position:absolute;left:12px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b1020;font-weight:900;display:grid;place-items:center;font-size:13px}
+  .tip::after{content:"";position:absolute;left:-6px;top:18px;width:12px;height:12px;background:rgba(124,92,255,.08);border-left:1px solid rgba(124,92,255,.28);border-bottom:1px solid rgba(124,92,255,.28);transform:rotate(45deg)}
+  /* Wizard */
+  .wizard{margin:30px 0 60px;display:none}
+  .wizard.active{display:block}
+  .progress{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+  .step-dot{flex:1;height:8px;background:#1a224a;border-radius:999px;overflow:hidden;position:relative}
+  .step-dot.done{background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+  .step-dot.current::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--brand),var(--brand-2));width:50%}
+  .step-num{color:var(--muted);font-size:13px;min-width:90px;text-align:right}
+  .qcard{padding:26px}
+  .qcard h2{margin:0 0 6px;font-size:22px}
+  .qcard .sub{color:var(--muted);margin:0 0 18px}
+  .options{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:18px}
+  .opt{cursor:pointer;border:1px solid var(--border);border-radius:12px;padding:14px;background:rgba(255,255,255,.02);transition:.15s ease;display:flex;gap:10px;align-items:flex-start}
+  .opt:hover{border-color:#41498a;background:rgba(124,92,255,.07)}
+  .opt input{margin-top:3px;accent-color:var(--brand)}
+  .opt .label{font-weight:600}
+  .opt .desc{color:var(--muted);font-size:13px;margin-top:2px}
+  .opt.selected{border-color:var(--brand);background:rgba(124,92,255,.13)}
+  textarea,input[type=text],input[type=email]{width:100%;background:#0e1430;border:1px solid var(--border);color:var(--text);border-radius:10px;padding:12px 14px;font-size:15px;font-family:inherit}
+  textarea{min-height:90px;resize:vertical}
+  .row{display:flex;justify-content:space-between;gap:12px;margin-top:8px}
+  .help{color:var(--muted);font-size:13px;margin-top:6px}
+  /* Plan */
+  .plan{display:none;margin:30px 0 60px}
+  .plan.active{display:block}
+  .plan h1{margin:0 0 6px}
+  .plan .meta{color:var(--muted);margin-bottom:20px}
+  .severity{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;font-weight:700;font-size:13px;margin-left:8px}
+  .sev-low{background:rgba(34,197,94,.15);color:#86efac;border:1px solid rgba(34,197,94,.35)}
+  .sev-med{background:rgba(245,158,11,.15);color:#fcd34d;border:1px solid rgba(245,158,11,.35)}
+  .sev-high{background:rgba(239,68,68,.18);color:#fecaca;border:1px solid rgba(239,68,68,.4)}
+  .section{padding:22px;margin-bottom:14px}
+  .section h3{margin:0 0 10px;display:flex;align-items:center;gap:10px}
+  .section h3 .dot{width:10px;height:10px;border-radius:50%;background:var(--brand-2)}
+  .checklist{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+  .checklist li{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start}
+  .checklist li::before{content:"";min-width:18px;height:18px;border-radius:5px;border:2px solid var(--brand);margin-top:2px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .timeline{position:relative;padding-left:18px;border-left:2px dashed #2c356a}
+  .timeline .item{margin-bottom:16px;position:relative}
+  .timeline .item::before{content:"";position:absolute;left:-25px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--brand)}
+  .badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:700;background:rgba(34,211,238,.15);color:#a5f3fc;border:1px solid rgba(34,211,238,.3);margin-right:6px}
+  .resources a{display:block;padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;margin-bottom:8px}
+  .resources a:hover{background:rgba(124,92,255,.1);border-color:#3a4496}
+  /* Footer */
+  footer{padding:30px 0 50px;color:var(--muted);text-align:center;font-size:13px;border-top:1px solid var(--border);margin-top:30px}
+  .toolbar{position:sticky;top:0;z-index:10;background:rgba(11,16,32,.8);backdrop-filter:blur(8px);padding:10px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;margin-bottom:14px}
+  @media (max-width:780px){
+    .hero{grid-template-columns:1fr}
+    .grid2{grid-template-columns:1fr}
+  }
+  @media print{
+    body{background:white;color:#111}
+    header,nav,.toolbar,#startBtn,.cta,.wizard,footer{display:none !important}
+    .plan{display:block !important}
+    .card{box-shadow:none;border-color:#ddd;background:white;color:#111}
+    .checklist li{background:#fafafa;color:#111}
+    .opt,.section{color:#111}
+    .pill,.badge{color:#222}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">
+      <div class="logo-mark">CS</div>
+      <div>
+        <div>CyberShield</div>
+        <div style="color:var(--muted);font-size:12px;font-weight:500">NGO Incident Response Toolkit</div>
+      </div>
+    </div>
+    <nav aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#start">Start</a>
+      <a href="#resources">Resources</a>
+      <a class="nav-download" href="windows-tool.html" title="Download the CyberShield Hardener for Windows">
+        <span aria-hidden="true">⬇</span>
+        <span>Download Windows tool</span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div>
+      <span class="pill">For non-profits, activists, journalists & humanitarian teams</span>
+      <h1>Your devices were hacked. <br/>Let's build a plan in 5 minutes.</h1>
+      <p>CyberShield asks a few targeted questions about what happened, then generates a tailored, step-by-step action plan to help your NGO contain the breach, recover access, and prevent the next one.</p>
+      <div class="cta">
+        <button class="btn btn-primary" id="startBtn">Start the assessment →</button>
+        <a class="btn btn-ghost" href="#resources">View resources</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="card hero-card">
+        <h3>Stay calm. Don't power off yet.</h3>
+        <p style="margin:0;color:var(--muted)">If you suspect an active attack, disconnect from Wi-Fi/Ethernet but keep the device powered on — forensic data lives in memory.</p>
+      </div>
+      <div class="card tips-card">
+        <div class="tips-grid">
+          <div class="tip">Don't tip off the attacker — don't post about it publicly.</div>
+          <div class="tip">Don't change passwords from a compromised device.</div>
+          <div class="tip">Use a clean phone to coordinate with your team.</div>
+          <div class="tip">Document everything you see — screenshots, times, suspicious messages.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS (centered full-width row) -->
+  <section class="hero-stats">
+    <div class="stats">
+      <div class="stat"><strong>10+</strong><span>Threat scenarios covered</span></div>
+      <div class="stat"><strong>72h</strong><span>Critical containment window</span></div>
+      <div class="stat"><strong>Free</strong><span>Always, for every NGO</span></div>
+    </div>
+  </section>
+
+  <!-- WIZARD -->
+  <section class="wizard" id="wizard">
+    <div class="toolbar">
+      <button class="btn btn-ghost" id="restartBtn">Restart</button>
+    </div>
+    <div class="progress" id="progress"></div>
+    <div class="card qcard" id="qcard"></div>
+  </section>
+
+  <!-- PLAN -->
+  <section class="plan" id="plan">
+    <div class="toolbar">
+      <button class="btn btn-ghost" onclick="window.print()">🖨 Print / Save PDF</button>
+      <button class="btn btn-ghost" id="copyBtn">📋 Copy plan</button>
+      <button class="btn btn-primary" id="newBtn">↻ New assessment</button>
+    </div>
+    <div id="planContent"></div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="card section" id="resources">
+    <h3><span class="dot"></span>Trusted resources for at-risk groups</h3>
+    <div class="resources">
+      <a href="https://www.accessnow.org/help/" target="_blank" rel="noopener">Access Now Digital Security Helpline — 24/7 free help for civil society (helpline@accessnow.org)</a>
+      <a href="https://securityinabox.org/" target="_blank" rel="noopener">Security in a Box — practical digital security guides by Tactical Tech & Front Line Defenders</a>
+      <a href="https://ssd.eff.org/" target="_blank" rel="noopener">EFF Surveillance Self-Defense — tips, tools and how-tos for safer online communications</a>
+      <a href="https://www.frontlinedefenders.org/en/emergency-contact" target="_blank" rel="noopener">Front Line Defenders — emergency support for human rights defenders</a>
+      <a href="https://cisecurity.org/ms-isac" target="_blank" rel="noopener">CIS / MS-ISAC — incident reporting & threat intelligence</a>
+      <a href="https://haveibeenpwned.com/" target="_blank" rel="noopener">Have I Been Pwned — check if accounts appear in known breaches</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>CyberShield is a free template. It does not replace professional incident response. If lives are at risk, contact a CERT or the Access Now helpline immediately.</p>
+  </footer>
+</div>
+
+<script>
+/* ---------- Question definitions ---------- */
+const QUESTIONS = [
+  {
+    id:"role",
+    title:"What is your role in the NGO?",
+    sub:"This helps us tailor the language and authority level of the plan.",
+    type:"single",
+    options:[
+      {v:"leadership",label:"Leadership / Director",desc:"Decision-maker, can authorize spend & comms"},
+      {v:"it",label:"IT / Tech focal point",desc:"Manages devices, accounts, infrastructure"},
+      {v:"staff",label:"Program staff",desc:"Field worker or office staff using the device"},
+      {v:"volunteer",label:"Volunteer / Other",desc:"Helping respond to the incident"}
+    ]
+  },
+  {
+    id:"signs",
+    title:"What signs of compromise have you noticed?",
+    sub:"Pick all that apply. Be honest — overestimating is safer than underestimating.",
+    type:"multi",
+    options:[
+      {v:"phishing",label:"Suspicious email / link clicked",desc:"Phishing message, fake login page, malicious attachment"},
+      {v:"ransom",label:"Files locked / ransom note",desc:"Files renamed, encrypted, ransom demand visible"},
+      {v:"account",label:"Account take-over",desc:"Locked out, unknown logins, password changed"},
+      {v:"malware",label:"Strange device behaviour",desc:"Slow performance, unknown apps, pop-ups, mic/cam light on"},
+      {v:"surveil",label:"Targeted surveillance suspected",desc:"State actor, spyware, mercenary tools (e.g. Pegasus)"},
+      {v:"social",label:"Social-media / website hijack",desc:"Posts you didn't make, defacement, DNS changes"},
+      {v:"insider",label:"Insider / lost device",desc:"Stolen, lost or accessed by an untrusted person"},
+      {v:"unknown",label:"I'm not sure yet",desc:"Something feels wrong but unconfirmed"}
+    ]
+  },
+  {
+    id:"devices",
+    title:"Which devices or systems are affected?",
+    sub:"Pick all that apply.",
+    type:"multi",
+    options:[
+      {v:"laptop",label:"Laptop / Desktop",desc:"Windows, macOS or Linux"},
+      {v:"phone",label:"Mobile phone",desc:"Android or iPhone"},
+      {v:"email",label:"Email account",desc:"Gmail, Outlook, ProtonMail, etc."},
+      {v:"cloud",label:"Cloud / file storage",desc:"Google Drive, Dropbox, OneDrive, Nextcloud"},
+      {v:"social",label:"Social media",desc:"Facebook, X/Twitter, Instagram, WhatsApp"},
+      {v:"server",label:"Server / website",desc:"NGO's website, CRM, donor database"},
+      {v:"network",label:"Office Wi-Fi / router",desc:"Suspect the network itself is compromised"}
+    ]
+  },
+  {
+    id:"data",
+    title:"What sensitive data could be exposed?",
+    sub:"This drives our risk rating and notification advice.",
+    type:"multi",
+    options:[
+      {v:"beneficiary",label:"Beneficiary identities",desc:"Names, locations of vulnerable people"},
+      {v:"donor",label:"Donor / financial info",desc:"Bank details, donation records"},
+      {v:"staff",label:"Staff personal data",desc:"IDs, salaries, home addresses"},
+      {v:"comms",label:"Internal communications",desc:"Email, chats, meeting notes"},
+      {v:"reports",label:"Investigations / sources",desc:"Sensitive reporting, whistleblowers, witnesses"},
+      {v:"none",label:"Nothing especially sensitive",desc:"Public materials only"}
+    ]
+  },
+  {
+    id:"actor",
+    title:"Who do you suspect is behind this?",
+    sub:"Best guess — we'll suggest a defensive posture accordingly.",
+    type:"single",
+    options:[
+      {v:"opportunistic",label:"Opportunistic criminals",desc:"Generic phishing, ransomware-for-hire"},
+      {v:"hacktivist",label:"Hacktivists / online mob",desc:"Coordinated harassment, doxxing"},
+      {v:"corporate",label:"Hostile corporate / local elite",desc:"Adversary with money but limited tech"},
+      {v:"state",label:"State / state-aligned actor",desc:"Government, intelligence service, mercenary spyware"},
+      {v:"unknown",label:"Truly unknown",desc:"No clear hypothesis yet"}
+    ]
+  },
+  {
+    id:"when",
+    title:"When did you first notice the issue?",
+    sub:"Time is critical for containment & evidence.",
+    type:"single",
+    options:[
+      {v:"now",label:"It is happening right now",desc:"Within the last hour"},
+      {v:"today",label:"Earlier today",desc:"Within last 24 hours"},
+      {v:"week",label:"This week",desc:"1–7 days ago"},
+      {v:"older",label:"More than a week ago",desc:"Older or unknown"}
+    ]
+  },
+  {
+    id:"context",
+    title:"Anything else we should know?",
+    sub:"Optional. e.g. 'we are in a country with internet restrictions', 'staff are in the field', 'we have no IT person'.",
+    type:"text"
+  }
+];
+
+/* ---------- State ---------- */
+const state = {step:0,answers:{}};
+const wizardEl = document.getElementById("wizard");
+const planEl = document.getElementById("plan");
+const qcardEl = document.getElementById("qcard");
+const progressEl = document.getElementById("progress");
+
+document.getElementById("startBtn").addEventListener("click",()=>{
+  wizardEl.classList.add("active");
+  planEl.classList.remove("active");
+  state.step=0;state.answers={};
+  render();
+  wizardEl.scrollIntoView({behavior:"smooth",block:"start"});
+});
+document.getElementById("restartBtn").addEventListener("click",()=>{
+  state.step=0;state.answers={};render();
+});
+document.getElementById("newBtn").addEventListener("click",()=>{
+  planEl.classList.remove("active");
+  wizardEl.classList.add("active");
+  state.step=0;state.answers={};render();
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+function render(){
+  // progress
+  progressEl.innerHTML="";
+  for(let i=0;i<QUESTIONS.length;i++){
+    const d=document.createElement("div");
+    d.className="step-dot"+(i<state.step?" done":i===state.step?" current":"");
+    progressEl.appendChild(d);
+  }
+  const num=document.createElement("div");
+  num.className="step-num";
+  num.textContent=`Step ${state.step+1} of ${QUESTIONS.length}`;
+  progressEl.appendChild(num);
+
+  const q=QUESTIONS[state.step];
+  let html=`<h2>${q.title}</h2><p class="sub">${q.sub}</p>`;
+  if(q.type==="text"){
+    const v=state.answers[q.id]||"";
+    html+=`<textarea id="ans" placeholder="Type a few sentences (optional)…">${v.replace(/</g,"&lt;")}</textarea>`;
+  }else{
+    html+=`<div class="options">`;
+    const sel=state.answers[q.id]|| (q.type==="multi"?[]:"");
+    q.options.forEach(o=>{
+      const checked=q.type==="multi"?sel.includes(o.v):sel===o.v;
+      html+=`<label class="opt ${checked?"selected":""}">
+        <input type="${q.type==="multi"?"checkbox":"radio"}" name="ans" value="${o.v}" ${checked?"checked":""}/>
+        <div><div class="label">${o.label}</div><div class="desc">${o.desc}</div></div>
+      </label>`;
+    });
+    html+=`</div>`;
+  }
+  html+=`<div class="row">
+    <button class="btn btn-ghost" id="backBtn" ${state.step===0?"disabled":""}>← Back</button>
+    <button class="btn btn-primary" id="nextBtn" disabled>${state.step===QUESTIONS.length-1?"Generate action plan →":"Next →"}</button>
+  </div>
+  <div class="help" id="validationHint" style="text-align:right;min-height:18px"></div>`;
+  qcardEl.innerHTML=html;
+
+  const nextBtn=qcardEl.querySelector("#nextBtn");
+  const hint=qcardEl.querySelector("#validationHint");
+  function refreshValidity(){
+    const ok=hasValidAnswer();
+    nextBtn.disabled=!ok;
+    hint.textContent=ok?"":(q.type==="multi"?"Select at least one option to continue.":"Choose an option to continue.");
+  }
+
+  // hook events — let the <label> handle the toggle natively, we just react
+  function syncOptStyles(){
+    qcardEl.querySelectorAll(".opt").forEach(o=>{
+      const i=o.querySelector("input");
+      o.classList.toggle("selected",i.checked);
+    });
+  }
+  qcardEl.querySelectorAll(".opt input").forEach(input=>{
+    input.addEventListener("change",()=>{
+      saveCurrent();
+      syncOptStyles();
+      refreshValidity();
+    });
+  });
+  const ansInput=qcardEl.querySelector("#ans");
+  if(ansInput){
+    ansInput.addEventListener("input",()=>{saveCurrent();refreshValidity();});
+  }
+  qcardEl.querySelector("#backBtn").addEventListener("click",()=>{if(state.step>0){saveCurrent();state.step--;render();}});
+  nextBtn.addEventListener("click",()=>{
+    if(nextBtn.disabled) return;
+    saveCurrent();
+    if(state.step<QUESTIONS.length-1){state.step++;render();}
+    else{showPlan();}
+  });
+
+  refreshValidity();
+}
+
+function hasValidAnswer(){
+  const q=QUESTIONS[state.step];
+  if(q.type==="text") return true; // optional free-text question
+  if(q.type==="multi"){
+    const checked=qcardEl.querySelectorAll("input:checked");
+    return checked.length>0;
+  }
+  return !!qcardEl.querySelector("input:checked");
+}
+
+function saveCurrent(){
+  const q=QUESTIONS[state.step];
+  if(q.type==="text"){
+    state.answers[q.id]=document.getElementById("ans").value.trim();
+  }else if(q.type==="multi"){
+    const vals=[...qcardEl.querySelectorAll("input:checked")].map(i=>i.value);
+    state.answers[q.id]=vals;
+  }else{
+    const sel=qcardEl.querySelector("input:checked");
+    state.answers[q.id]=sel?sel.value:"";
+  }
+}
+
+/* ---------- Plan generator ---------- */
+function showPlan(){
+  wizardEl.classList.remove("active");
+  planEl.classList.add("active");
+  document.getElementById("planContent").innerHTML=buildPlan(state.answers);
+  planEl.scrollIntoView({behavior:"smooth",block:"start"});
+  document.getElementById("copyBtn").onclick=()=>{
+    const text=document.getElementById("planContent").innerText;
+    navigator.clipboard.writeText(text).then(()=>{alert("Action plan copied to clipboard.");});
+  };
+}
+
+function buildPlan(a){
+  // severity scoring
+  let score=0;
+  if((a.signs||[]).includes("ransom")) score+=3;
+  if((a.signs||[]).includes("surveil")) score+=4;
+  if((a.signs||[]).includes("account")) score+=2;
+  if((a.signs||[]).includes("malware")) score+=2;
+  if((a.signs||[]).includes("social")) score+=2;
+  if((a.signs||[]).includes("insider")) score+=2;
+  if((a.signs||[]).includes("phishing")) score+=1;
+  if((a.devices||[]).includes("server")) score+=2;
+  if((a.devices||[]).includes("network")) score+=2;
+  const sensitive=(a.data||[]).filter(d=>d!=="none");
+  score+=sensitive.length;
+  if(a.actor==="state") score+=4;
+  if(a.actor==="hacktivist") score+=2;
+  if(a.when==="now") score+=2;
+  if(a.when==="today") score+=1;
+
+  let sev="Low",sevClass="sev-low";
+  if(score>=6 && score<10){sev="Medium";sevClass="sev-med";}
+  else if(score>=10){sev="High";sevClass="sev-high";}
+
+  const date=new Date().toLocaleString();
+  const signSet=new Set(a.signs||[]);
+  const devSet=new Set(a.devices||[]);
+  const dataSet=new Set(a.data||[]);
+
+  // Immediate (first 60 min)
+  const immediate=[];
+  immediate.push("Stay calm. Move to a quiet space and use a clean device (a personal phone NOT involved in the incident) to coordinate.");
+  if(devSet.has("laptop")||devSet.has("phone")||signSet.has("malware")||signSet.has("surveil")){
+    immediate.push("Disconnect affected devices from the internet (turn off Wi-Fi, unplug Ethernet, enable airplane mode). Do NOT power them off — keep them on for forensics.");
+  }
+  if(devSet.has("network")){
+    immediate.push("Unplug the office router from the internet but keep it powered. Note any unfamiliar devices on the network.");
+  }
+  if(signSet.has("ransom")){
+    immediate.push("Do NOT pay the ransom yet. Photograph the ransom note and any file extensions. Contact Access Now or your local CERT.");
+  }
+  if(signSet.has("account")||signSet.has("social")){
+    immediate.push("From a CLEAN device, change passwords for the most critical accounts (email first, then banking, then social/cloud). Use a password manager and unique passwords.");
+    immediate.push("Enable hardware-key or app-based 2FA on the recovered accounts. Avoid SMS-based 2FA where possible.");
+  }
+  if(signSet.has("phishing")){
+    immediate.push("Identify what you clicked, when, and from which device/account. Save the original phishing email (do not delete).");
+  }
+  if(signSet.has("insider")){
+    immediate.push("Use 'Find My Device' / MDM to lock or wipe the lost/stolen device remotely if data is sensitive.");
+  }
+  immediate.push("Designate ONE incident lead to make decisions and take notes. Avoid mass discussion in compromised channels.");
+
+  // Containment (first 24h)
+  const contain=[];
+  contain.push("Inventory: list every account, device, and service the affected user/team has access to. Mark which ones share passwords or sessions.");
+  contain.push("Sign out all sessions from each affected account ('log out everywhere' / 'revoke active sessions').");
+  contain.push("Rotate API tokens, app passwords, OAuth grants, and shared admin credentials.");
+  if(devSet.has("email")) contain.push("Check email forwarding rules, filters, and recovery addresses for tampering. Attackers often add hidden auto-forwards.");
+  if(devSet.has("cloud")) contain.push("Review cloud share links and external collaborators. Revoke any sharing you don't recognise. Check trash for mass-deleted files.");
+  if(devSet.has("server")) contain.push("Take the website offline or behind maintenance mode. Snapshot disks before any cleanup. Check for new admin users and webshells.");
+  if(devSet.has("social")) contain.push("Use platform-specific account recovery (Meta Business help, X compromised account form, Google security checkup).");
+  if(signSet.has("surveil")){
+    contain.push("Assume mobile spyware: stop using the device for sensitive comms. Switch to Signal on a clean phone. Reach the Access Now helpline before factory-resetting — they can help preserve evidence.");
+  }
+  if(signSet.has("ransom")){
+    contain.push("Isolate backups so ransomware cannot reach them. Verify offline / immutable backups exist before any recovery attempt.");
+  }
+  contain.push("Start a written incident log: timestamp, observation, action taken, who did it. This becomes your evidence trail.");
+
+  // Recovery (1-7 days)
+  const recovery=[];
+  if(devSet.has("laptop")){
+    recovery.push("Wipe and re-install affected laptops/desktops from trusted media. Don't 'clean' them with antivirus alone — you cannot fully trust a compromised OS.");
+  }
+  if(devSet.has("phone")){
+    recovery.push("Factory-reset phones AFTER evidence is preserved. Re-install only essential apps from official stores.");
+  }
+  recovery.push("Restore data from a backup made BEFORE the suspected intrusion date. Scan restored files before opening.");
+  recovery.push("Re-enrol devices in MDM, re-issue certificates, and rotate any shared SSH or VPN keys.");
+  if(devSet.has("server")) recovery.push("Patch the underlying vulnerability (CMS, plugin, OS, exposed admin panel) before bringing the server back online. Add a WAF and rate-limiting.");
+  if(devSet.has("network")) recovery.push("Reset router admin password, update firmware, change Wi-Fi SSID & WPA2/WPA3 password, disable WPS and remote admin.");
+  recovery.push("Run a final 'all clear' check: review recent logins, OAuth apps, mail filters, browser extensions, scheduled tasks, startup items.");
+
+  // Notification
+  const notify=[];
+  if(sensitive.length){
+    notify.push(`Notify affected ${sensitive.includes("beneficiary")?"beneficiaries, ":""}${sensitive.includes("donor")?"donors, ":""}${sensitive.includes("staff")?"staff, ":""}${sensitive.includes("reports")?"sources, ":""}— in the safest channel available, with clear language about what was exposed and what they should do.`);
+  }
+  notify.push("Inform your board / leadership in writing within 24 hours. Decide together on public communication.");
+  if(dataSet.has("donor")||dataSet.has("staff")||dataSet.has("beneficiary")){
+    notify.push("Check whether your country (and the countries of affected people) require breach notification to a data-protection authority (e.g. GDPR — within 72 hours).");
+  }
+  notify.push("If criminal activity occurred, consider filing a report with police / national CERT — but only if doing so won't endanger your team or sources.");
+  notify.push("Coordinate one consistent message externally. Avoid speculation; share facts and remediation steps.");
+
+  // Long term
+  const longterm=[];
+  longterm.push("Conduct a blameless post-incident review within 2 weeks. Document root cause, gaps, and changes.");
+  longterm.push("Roll out a password manager and phishing-resistant 2FA (hardware keys like YubiKey, or passkeys) for the whole team.");
+  longterm.push("Apply the principle of least privilege: review who really needs admin access to email, cloud, social, and finance tools.");
+  longterm.push("Set up automated, encrypted, off-site backups with at least one offline copy. Test restoration quarterly.");
+  longterm.push("Run an annual phishing drill and a 30-minute digital-security refresher with all staff and volunteers.");
+  if(a.actor==="state"){
+    longterm.push("Adopt a 'high-risk' posture: Signal-only for sensitive comms, separate work and personal devices, use Lockdown Mode (iOS) / Advanced Protection (Google), brief staff on travel hygiene.");
+  }
+  longterm.push("Write a 1-page Incident Response Plan and pin it where the team can find it (not only on the compromised systems).");
+
+  // What NOT to do
+  const dont=[
+    "Don't power off computers if you suspect spyware — RAM evidence will be lost.",
+    "Don't change passwords from the device you suspect is compromised.",
+    "Don't delete the phishing email, ransom note, or suspicious files. They are evidence.",
+    "Don't pay a ransom without expert advice. Payment doesn't guarantee recovery and can fund further attacks.",
+    "Don't publicly accuse anyone before you have evidence — it can damage your credibility and your case.",
+    "Don't reuse compromised passwords on any other account."
+  ];
+
+  // Roles
+  const roleNote = {
+    leadership:"You are the decision authority. Approve spend for emergency help, sign off on external messaging, and protect the responder team from blame.",
+    it:"You are the technical lead. Preserve evidence first, then contain, then recover. Document every command you run.",
+    staff:"Hand the affected device to the IT focal point or escalate to leadership. Don't self-fix — but DO write down everything you remember.",
+    volunteer:"Support the lead by handling logistics: clean devices, food, contact lists, note-taking. Don't access compromised accounts."
+  }[a.role||"staff"];
+
+  // Render
+  return `
+    <h1>Your Action Plan <span class="severity ${sevClass}">Severity: ${sev}</span></h1>
+    <div class="meta">Generated ${date} for an NGO incident response. Score: ${score}.</div>
+
+    <div class="card section">
+      <h3><span class="dot"></span>Situation summary</h3>
+      <p><strong>Reported signs:</strong> ${(a.signs||[]).map(s=>`<span class="badge">${labelOf("signs",s)}</span>`).join("")||"<em>none specified</em>"}</p>
+      <p><strong>Affected systems:</strong> ${(a.devices||[]).map(s=>`<span class="badge">${labelOf("devices",s)}</span>`).join("")||"<em>none specified</em>"}</p>
+      <p><strong>Sensitive data involved:</strong> ${(a.data||[]).map(s=>`<span class="badge">${labelOf("data",s)}</span>`).join("")||"<em>none specified</em>"}</p>
+      <p><strong>Suspected actor:</strong> ${labelOf("actor",a.actor)||"<em>unknown</em>"}</p>
+      <p><strong>First noticed:</strong> ${labelOf("when",a.when)||"<em>unknown</em>"}</p>
+      ${a.context?`<p><strong>Context:</strong> ${escapeHtml(a.context)}</p>`:""}
+      <p style="margin-top:14px"><strong>Your role:</strong> ${roleNote}</p>
+    </div>
+
+    <div class="card section">
+      <h3><span class="dot"></span>🚨 First 60 minutes — Immediate actions</h3>
+      <ul class="checklist">${immediate.map(x=>`<li>${x}</li>`).join("")}</ul>
+    </div>
+
+    <div class="card section">
+      <h3><span class="dot"></span>🛡 First 24 hours — Containment</h3>
+      <ul class="checklist">${contain.map(x=>`<li>${x}</li>`).join("")}</ul>
+    </div>
+
+    <div class="grid2">
+      <div class="card section">
+        <h3><span class="dot"></span>🔧 Days 1–7 — Recovery</h3>
+        <ul class="checklist">${recovery.map(x=>`<li>${x}</li>`).join("")}</ul>
+      </div>
+      <div class="card section">
+        <h3><span class="dot"></span>📣 Notification & communications</h3>
+        <ul class="checklist">${notify.map(x=>`<li>${x}</li>`).join("")}</ul>
+      </div>
+    </div>
+
+    <div class="card section">
+      <h3 style="justify-content:space-between;flex-wrap:wrap;row-gap:8px">
+        <span style="display:inline-flex;align-items:center;gap:10px"><span class="dot"></span>🌱 Beyond the incident — Hardening</span>
+        <a href="windows-tool.html" class="btn btn-good" style="font-size:13px;padding:8px 14px;text-decoration:none">🛠 Try other suggestions →</a>
+      </h3>
+      <ul class="checklist">${longterm.map(x=>`<li>${x}</li>`).join("")}</ul>
+    </div>
+
+    <div class="card section" style="border-color:rgba(239,68,68,.4)">
+      <h3 style="color:#fecaca"><span class="dot" style="background:#ef4444"></span>What NOT to do</h3>
+      <ul class="checklist">${dont.map(x=>`<li>${x}</li>`).join("")}</ul>
+    </div>
+
+    <div class="card section">
+      <h3><span class="dot"></span>📞 Get expert help (recommended for ${sev.toLowerCase()} severity)</h3>
+      <div class="resources">
+        <a href="mailto:help@accessnow.org">Access Now Digital Security Helpline — help@accessnow.org (24/7, free, multiple languages)</a>
+        <a href="https://www.frontlinedefenders.org/en/emergency-contact" target="_blank" rel="noopener">Front Line Defenders — emergency support for human rights defenders</a>
+        <a href="https://citizenlab.ca/contact/" target="_blank" rel="noopener">Citizen Lab — for suspected state-sponsored spyware</a>
+        <a href="https://ssd.eff.org/" target="_blank" rel="noopener">EFF Surveillance Self-Defense — guides for safer tools</a>
+      </div>
+    </div>
+
+    <div class="card section">
+      <h3><span class="dot"></span>🗒 Incident log — copy this template</h3>
+      <pre style="white-space:pre-wrap;background:#0e1430;border:1px solid var(--border);padding:14px;border-radius:10px;color:#cfd6ff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px">
+INCIDENT ID: NGO-${Date.now().toString().slice(-6)}
+Date opened: ${date}
+Incident lead: __________
+Severity: ${sev}
+
+Timeline:
+  [HH:MM] Detected: __________
+  [HH:MM] Devices isolated: __________
+  [HH:MM] Passwords rotated: __________
+  [HH:MM] Leadership notified: __________
+  [HH:MM] External help contacted: __________
+  [HH:MM] Recovery started: __________
+  [HH:MM] Incident closed: __________
+
+Affected accounts/devices:
+  - __________
+
+Evidence preserved (screenshots, files, emails):
+  - __________
+
+Decisions made & by whom:
+  - __________
+
+Lessons learned:
+  - __________
+      </pre>
+    </div>
+  `;
+}
+
+function labelOf(qid,v){
+  const q=QUESTIONS.find(x=>x.id===qid);
+  if(!q||!q.options) return v||"";
+  const o=q.options.find(o=>o.v===v);
+  return o?o.label:v;
+}
+function escapeHtml(s){return (s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+</script>
+</body>
+</html>
