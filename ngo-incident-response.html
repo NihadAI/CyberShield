@@ -79,13 +79,30 @@
   header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
   .logo{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px}
   .logo-mark{width:36px;height:36px;border-radius:10px;background:conic-gradient(from 200deg,#7c5cff,#22d3ee,#7c5cff);display:grid;place-items:center;color:#0b1020;font-weight:900;box-shadow:var(--shadow)}
-  nav{display:flex;align-items:center;gap:10px}
-  nav a{margin-left:8px;color:var(--muted);font-weight:500}
-  nav a:hover{color:var(--text)}
-  .nav-download{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#22c55e,#10b981);color:white !important;padding:9px 14px;border-radius:10px;font-weight:700;font-size:14px;box-shadow:0 6px 16px rgba(34,197,94,.28);transition:box-shadow .2s ease,transform .08s ease;margin-left:14px}
+  nav{display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+  nav a.nav-link{margin-left:14px;color:var(--muted);font-weight:500;transition:color .15s ease}
+  nav a.nav-link:hover{color:var(--text);text-decoration:none}
+  .nav-download{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#22c55e,#10b981);color:white !important;padding:9px 14px;border-radius:10px;font-weight:700;font-size:14px;box-shadow:0 6px 16px rgba(34,197,94,.28);transition:box-shadow .2s ease,transform .08s ease;margin-left:14px;white-space:nowrap}
   .nav-download:hover{box-shadow:0 10px 22px rgba(34,197,94,.45);text-decoration:none}
   .nav-download:active{transform:translateY(1px)}
-  @media (max-width:640px){.nav-download .long{display:none}}
+  .lang-switch{display:inline-flex;gap:2px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:3px;margin-left:12px}
+  .lang-switch button{appearance:none;border:0;background:transparent;color:var(--muted);padding:6px 10px;font-size:11px;font-weight:700;letter-spacing:.05em;cursor:pointer;border-radius:7px;font-family:inherit;transition:color .15s ease,background .15s ease}
+  .lang-switch button:hover{color:var(--text)}
+  .lang-switch button[aria-pressed="true"]{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b1020}
+  @media (max-width:980px){.nav-download .nd-full{display:none}.nav-download .nd-short{display:inline}}
+  @media (min-width:981px){.nav-download .nd-short{display:none}}
+  @media (max-width:720px){
+    header{gap:10px;flex-wrap:wrap}
+    nav a.nav-link{margin-left:10px;font-size:13px}
+    .nav-download{padding:8px 10px;font-size:13px;margin-left:8px}
+    .nav-download .nd-short{display:none}
+    .lang-switch{margin-left:8px}
+    .lang-switch button{padding:5px 7px;font-size:10px}
+  }
+  @media (max-width:520px){
+    .nav-download .nd-icon{font-size:16px}
+    nav a.nav-link{margin-left:8px;font-size:12px}
+  }
   .hero{padding:40px 0 24px;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start}
   .hero-right{display:flex;flex-direction:column;gap:22px;margin-top:-8px}
   .hero-stats{padding:8px 0 56px}
@@ -186,42 +203,47 @@
       <div class="logo-mark">CS</div>
       <div>
         <div>CyberShield</div>
-        <div style="color:var(--muted);font-size:12px;font-weight:500">NGO Incident Response Toolkit</div>
+        <div style="color:var(--muted);font-size:12px;font-weight:500" data-i18n="app.tagline">NGO Incident Response Toolkit</div>
       </div>
     </div>
     <nav aria-label="Primary navigation">
-      <a href="#about">About</a>
-      <a href="#start">Start</a>
-      <a href="#resources">Resources</a>
-      <a class="nav-download" href="windows-tool.html" title="Download the CyberShield Hardener for Windows">
-        <span aria-hidden="true">⬇</span>
-        <span>Download Windows tool</span>
+      <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
+      <a href="#resources" class="nav-link" data-i18n="nav.resources">Resources</a>
+      <a class="nav-download" href="windows-tool.html" aria-label="Download the Windows tool">
+        <span aria-hidden="true" class="nd-icon">⬇</span>
+        <span class="nd-full" data-i18n="nav.download.full">Download Windows tool</span>
+        <span class="nd-short" data-i18n="nav.download.short">Download</span>
       </a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">ENG</button>
+        <button type="button" data-lang="az" aria-pressed="false">AZE</button>
+        <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
     </nav>
   </header>
 
   <!-- HERO -->
   <section class="hero" id="about">
     <div>
-      <span class="pill">For non-profits, activists, journalists & humanitarian teams</span>
-      <h1>Your devices were hacked. <br/>Let's build a plan in 5 minutes.</h1>
-      <p>CyberShield asks a few targeted questions about what happened, then generates a tailored, step-by-step action plan to help your NGO contain the breach, recover access, and prevent the next one.</p>
+      <span class="pill" data-i18n="hero.pill">For non-profits, activists, journalists & humanitarian teams</span>
+      <h1 data-i18n="hero.h1" data-i18n-html="1">Your devices were hacked. <br/>Let's build a plan in 5 minutes.</h1>
+      <p data-i18n="hero.desc">CyberShield asks a few targeted questions about what happened, then generates a tailored, step-by-step action plan to help your NGO contain the breach, recover access, and prevent the next one.</p>
       <div class="cta">
-        <button class="btn btn-primary" id="startBtn">Start the assessment →</button>
-        <a class="btn btn-ghost" href="#resources">View resources</a>
+        <button class="btn btn-primary" id="startBtn" data-i18n="hero.start">Start the assessment →</button>
+        <a class="btn btn-ghost" href="#resources" data-i18n="hero.viewres">View resources</a>
       </div>
     </div>
     <div class="hero-right">
       <div class="card hero-card">
-        <h3>Stay calm. Don't power off yet.</h3>
-        <p style="margin:0;color:var(--muted)">If you suspect an active attack, disconnect from Wi-Fi/Ethernet but keep the device powered on — forensic data lives in memory.</p>
+        <h3 data-i18n="warn.title">Stay calm. Don't power off yet.</h3>
+        <p style="margin:0;color:var(--muted)" data-i18n="warn.body">If you suspect an active attack, disconnect from Wi-Fi/Ethernet but keep the device powered on — forensic data lives in memory.</p>
       </div>
       <div class="card tips-card">
         <div class="tips-grid">
-          <div class="tip">Don't tip off the attacker — don't post about it publicly.</div>
-          <div class="tip">Don't change passwords from a compromised device.</div>
-          <div class="tip">Use a clean phone to coordinate with your team.</div>
-          <div class="tip">Document everything you see — screenshots, times, suspicious messages.</div>
+          <div class="tip" data-i18n="tip.1">Don't tip off the attacker — don't post about it publicly.</div>
+          <div class="tip" data-i18n="tip.2">Don't change passwords from a compromised device.</div>
+          <div class="tip" data-i18n="tip.3">Use a clean phone to coordinate with your team.</div>
+          <div class="tip" data-i18n="tip.4">Document everything you see — screenshots, times, suspicious messages.</div>
         </div>
       </div>
     </div>
@@ -230,16 +252,16 @@
   <!-- STATS (centered full-width row) -->
   <section class="hero-stats">
     <div class="stats">
-      <div class="stat"><strong>10+</strong><span>Threat scenarios covered</span></div>
-      <div class="stat"><strong>72h</strong><span>Critical containment window</span></div>
-      <div class="stat"><strong>Free</strong><span>Always, for every NGO</span></div>
+      <div class="stat"><strong>10+</strong><span data-i18n="stats.scenarios">Threat scenarios covered</span></div>
+      <div class="stat"><strong>72h</strong><span data-i18n="stats.window">Critical containment window</span></div>
+      <div class="stat"><strong data-i18n="stats.free.value">Free</strong><span data-i18n="stats.free.label">Always, for every NGO</span></div>
     </div>
   </section>
 
   <!-- WIZARD -->
   <section class="wizard" id="wizard">
     <div class="toolbar">
-      <button class="btn btn-ghost" id="restartBtn">Restart</button>
+      <button class="btn btn-ghost" id="restartBtn" data-i18n="wiz.restart">Restart</button>
     </div>
     <div class="progress" id="progress"></div>
     <div class="card qcard" id="qcard"></div>
@@ -248,16 +270,16 @@
   <!-- PLAN -->
   <section class="plan" id="plan">
     <div class="toolbar">
-      <button class="btn btn-ghost" onclick="window.print()">🖨 Print / Save PDF</button>
-      <button class="btn btn-ghost" id="copyBtn">📋 Copy plan</button>
-      <button class="btn btn-primary" id="newBtn">↻ New assessment</button>
+      <button class="btn btn-ghost" id="printBtn" onclick="window.print()" data-i18n="plan.print">🖨 Print / Save PDF</button>
+      <button class="btn btn-ghost" id="copyBtn" data-i18n="plan.copy">📋 Copy plan</button>
+      <button class="btn btn-primary" id="newBtn" data-i18n="plan.new">↻ New assessment</button>
     </div>
     <div id="planContent"></div>
   </section>
 
   <!-- RESOURCES -->
   <section class="card section" id="resources">
-    <h3><span class="dot"></span>Trusted resources for at-risk groups</h3>
+    <h3><span class="dot"></span><span data-i18n="res.title">Trusted resources for at-risk groups</span></h3>
     <div class="resources">
       <a href="https://www.accessnow.org/help/" target="_blank" rel="noopener">Access Now Digital Security Helpline — 24/7 free help for civil society (helpline@accessnow.org)</a>
       <a href="https://securityinabox.org/" target="_blank" rel="noopener">Security in a Box — practical digital security guides by Tactical Tech & Front Line Defenders</a>
@@ -269,109 +291,465 @@
   </section>
 
   <footer>
-    <p>CyberShield is a free template. It does not replace professional incident response. If lives are at risk, contact a CERT or the Access Now helpline immediately.</p>
+    <p data-i18n="footer.note">CyberShield is a free template. It does not replace professional incident response. If lives are at risk, contact a CERT or the Access Now helpline immediately.</p>
   </footer>
 </div>
 
 <script>
-/* ---------- Question definitions ---------- */
-const QUESTIONS = [
-  {
-    id:"role",
-    title:"What is your role in the NGO?",
-    sub:"This helps us tailor the language and authority level of the plan.",
-    type:"single",
-    options:[
-      {v:"leadership",label:"Leadership / Director",desc:"Decision-maker, can authorize spend & comms"},
-      {v:"it",label:"IT / Tech focal point",desc:"Manages devices, accounts, infrastructure"},
-      {v:"staff",label:"Program staff",desc:"Field worker or office staff using the device"},
-      {v:"volunteer",label:"Volunteer / Other",desc:"Helping respond to the incident"}
-    ]
+/* ---------- i18n ---------- */
+const LANGS = ['en','az','ru'];
+const I18N = {
+  en: {
+    'app.tagline':'NGO Incident Response Toolkit',
+    'nav.about':'About','nav.resources':'Resources',
+    'nav.download.full':'Download Windows tool','nav.download.short':'Download',
+    'hero.pill':'For non-profits, activists, journalists & humanitarian teams',
+    'hero.h1':"Your devices were hacked. <br/>Let's build a plan in 5 minutes.",
+    'hero.desc':'CyberShield asks a few targeted questions about what happened, then generates a tailored, step-by-step action plan to help your NGO contain the breach, recover access, and prevent the next one.',
+    'hero.start':'Start the assessment →','hero.viewres':'View resources',
+    'warn.title':"Stay calm. Don't power off yet.",
+    'warn.body':'If you suspect an active attack, disconnect from Wi-Fi/Ethernet but keep the device powered on — forensic data lives in memory.',
+    'tip.1':"Don't tip off the attacker — don't post about it publicly.",
+    'tip.2':"Don't change passwords from a compromised device.",
+    'tip.3':'Use a clean phone to coordinate with your team.',
+    'tip.4':'Document everything you see — screenshots, times, suspicious messages.',
+    'stats.scenarios':'Threat scenarios covered','stats.window':'Critical containment window',
+    'stats.free.value':'Free','stats.free.label':'Always, for every NGO',
+    'res.title':'Trusted resources for at-risk groups',
+    'footer.note':'CyberShield is a free template. It does not replace professional incident response. If lives are at risk, contact a CERT or the Access Now helpline immediately.',
+    'wiz.restart':'Restart','wiz.step':'Step {1} of {2}','wiz.back':'← Back','wiz.next':'Next →','wiz.generate':'Generate action plan →',
+    'wiz.text.ph':'Type a few sentences (optional)…',
+    'wiz.validate.single':'Choose an option to continue.','wiz.validate.multi':'Select at least one option to continue.',
+    'q.role.title':'What is your role in the NGO?','q.role.sub':'This helps us tailor the language and authority level of the plan.',
+    'q.signs.title':'What signs of compromise have you noticed?','q.signs.sub':'Pick all that apply. Be honest — overestimating is safer than underestimating.',
+    'q.devices.title':'Which devices or systems are affected?','q.devices.sub':'Pick all that apply.',
+    'q.data.title':'What sensitive data could be exposed?','q.data.sub':'This drives our risk rating and notification advice.',
+    'q.actor.title':'Who do you suspect is behind this?','q.actor.sub':"Best guess — we'll suggest a defensive posture accordingly.",
+    'q.when.title':'When did you first notice the issue?','q.when.sub':'Time is critical for containment & evidence.',
+    'q.context.title':'Anything else we should know?','q.context.sub':"Optional. e.g. 'we are in a country with internet restrictions', 'staff are in the field', 'we have no IT person'.",
+    'opt.role.leadership.label':'Leadership / Director','opt.role.leadership.desc':'Decision-maker, can authorize spend & comms',
+    'opt.role.it.label':'IT / Tech focal point','opt.role.it.desc':'Manages devices, accounts, infrastructure',
+    'opt.role.staff.label':'Program staff','opt.role.staff.desc':'Field worker or office staff using the device',
+    'opt.role.volunteer.label':'Volunteer / Other','opt.role.volunteer.desc':'Helping respond to the incident',
+    'opt.signs.phishing.label':'Suspicious email / link clicked','opt.signs.phishing.desc':'Phishing message, fake login page, malicious attachment',
+    'opt.signs.ransom.label':'Files locked / ransom note','opt.signs.ransom.desc':'Files renamed, encrypted, ransom demand visible',
+    'opt.signs.account.label':'Account take-over','opt.signs.account.desc':'Locked out, unknown logins, password changed',
+    'opt.signs.malware.label':'Strange device behaviour','opt.signs.malware.desc':'Slow performance, unknown apps, pop-ups, mic/cam light on',
+    'opt.signs.surveil.label':'Targeted surveillance suspected','opt.signs.surveil.desc':'State actor, spyware, mercenary tools (e.g. Pegasus)',
+    'opt.signs.social.label':'Social-media / website hijack',"opt.signs.social.desc":"Posts you didn't make, defacement, DNS changes",
+    'opt.signs.insider.label':'Insider / lost device','opt.signs.insider.desc':'Stolen, lost or accessed by an untrusted person',
+    'opt.signs.unknown.label':"I'm not sure yet",'opt.signs.unknown.desc':'Something feels wrong but unconfirmed',
+    'opt.devices.laptop.label':'Laptop / Desktop','opt.devices.laptop.desc':'Windows, macOS or Linux',
+    'opt.devices.phone.label':'Mobile phone','opt.devices.phone.desc':'Android or iPhone',
+    'opt.devices.email.label':'Email account','opt.devices.email.desc':'Gmail, Outlook, ProtonMail, etc.',
+    'opt.devices.cloud.label':'Cloud / file storage','opt.devices.cloud.desc':'Google Drive, Dropbox, OneDrive, Nextcloud',
+    'opt.devices.social.label':'Social media','opt.devices.social.desc':'Facebook, X/Twitter, Instagram, WhatsApp',
+    'opt.devices.server.label':'Server / website',"opt.devices.server.desc":"NGO's website, CRM, donor database",
+    'opt.devices.network.label':'Office Wi-Fi / router','opt.devices.network.desc':'Suspect the network itself is compromised',
+    'opt.data.beneficiary.label':'Beneficiary identities','opt.data.beneficiary.desc':'Names, locations of vulnerable people',
+    'opt.data.donor.label':'Donor / financial info','opt.data.donor.desc':'Bank details, donation records',
+    'opt.data.staff.label':'Staff personal data','opt.data.staff.desc':'IDs, salaries, home addresses',
+    'opt.data.comms.label':'Internal communications','opt.data.comms.desc':'Email, chats, meeting notes',
+    'opt.data.reports.label':'Investigations / sources','opt.data.reports.desc':'Sensitive reporting, whistleblowers, witnesses',
+    'opt.data.none.label':'Nothing especially sensitive','opt.data.none.desc':'Public materials only',
+    'opt.actor.opportunistic.label':'Opportunistic criminals','opt.actor.opportunistic.desc':'Generic phishing, ransomware-for-hire',
+    'opt.actor.hacktivist.label':'Hacktivists / online mob','opt.actor.hacktivist.desc':'Coordinated harassment, doxxing',
+    'opt.actor.corporate.label':'Hostile corporate / local elite','opt.actor.corporate.desc':'Adversary with money but limited tech',
+    'opt.actor.state.label':'State / state-aligned actor','opt.actor.state.desc':'Government, intelligence service, mercenary spyware',
+    'opt.actor.unknown.label':'Truly unknown','opt.actor.unknown.desc':'No clear hypothesis yet',
+    'opt.when.now.label':'It is happening right now','opt.when.now.desc':'Within the last hour',
+    'opt.when.today.label':'Earlier today','opt.when.today.desc':'Within last 24 hours',
+    'opt.when.week.label':'This week','opt.when.week.desc':'1–7 days ago',
+    'opt.when.older.label':'More than a week ago','opt.when.older.desc':'Older or unknown',
+    'plan.print':'🖨 Print / Save PDF','plan.copy':'📋 Copy plan','plan.new':'↻ New assessment',
+    'plan.copied':'Action plan copied to clipboard.',
+    'plan.title':'Your Action Plan','plan.meta':'Generated {1} for an NGO incident response. Score: {2}.',
+    'plan.severity':'Severity:','plan.sev.low':'Low','plan.sev.med':'Medium','plan.sev.high':'High',
+    'plan.summary.title':'Situation summary','plan.summary.signs':'Reported signs:','plan.summary.devices':'Affected systems:',
+    'plan.summary.data':'Sensitive data involved:','plan.summary.actor':'Suspected actor:','plan.summary.when':'First noticed:',
+    'plan.summary.context':'Context:','plan.summary.role':'Your role:','plan.summary.none':'none specified','plan.summary.unknown':'unknown',
+    'plan.immediate.title':'🚨 First 60 minutes — Immediate actions','plan.contain.title':'🛡 First 24 hours — Containment',
+    'plan.recovery.title':'🔧 Days 1–7 — Recovery','plan.notify.title':'📣 Notification & communications',
+    'plan.longterm.title':'🌱 Beyond the incident — Hardening','plan.trySuggestions':'🛠 Try other suggestions →',
+    'plan.dont.title':'What NOT to do','plan.help.title':'📞 Get expert help','plan.log.title':'🗒 Incident log — copy this template',
+    'log.date':'Date opened','log.lead':'Incident lead','log.severity':'Severity','log.timeline':'Timeline',
+    'log.detected':'Detected','log.isolated':'Devices isolated','log.passwords':'Passwords rotated',
+    'log.leadership':'Leadership notified','log.external':'External help contacted','log.recovery':'Recovery started','log.closed':'Incident closed',
+    'log.accounts':'Affected accounts/devices','log.evidence':'Evidence preserved (screenshots, files, emails)',
+    'log.decisions':'Decisions made & by whom','log.lessons':'Lessons learned',
+    'role.leadership':'You are the decision authority. Approve spend for emergency help, sign off on external messaging, and protect the responder team from blame.',
+    'role.it':'You are the technical lead. Preserve evidence first, then contain, then recover. Document every command you run.',
+    'role.staff':"Hand the affected device to the IT focal point or escalate to leadership. Don't self-fix — but DO write down everything you remember.",
+    'role.volunteer':"Support the lead by handling logistics: clean devices, food, contact lists, note-taking. Don't access compromised accounts.",
+    'im.1':'Stay calm. Move to a quiet space and use a clean device (a personal phone NOT involved in the incident) to coordinate.',
+    'im.2':'Disconnect affected devices from the internet (turn off Wi-Fi, unplug Ethernet, enable airplane mode). Do NOT power them off — keep them on for forensics.',
+    'im.3':'Unplug the office router from the internet but keep it powered. Note any unfamiliar devices on the network.',
+    'im.4':'Do NOT pay the ransom yet. Photograph the ransom note and any file extensions. Contact Access Now or your local CERT.',
+    'im.5':'From a CLEAN device, change passwords for the most critical accounts (email first, then banking, then social/cloud). Use a password manager and unique passwords.',
+    'im.6':'Enable hardware-key or app-based 2FA on the recovered accounts. Avoid SMS-based 2FA where possible.',
+    'im.7':'Identify what you clicked, when, and from which device/account. Save the original phishing email (do not delete).',
+    'im.8':"Use 'Find My Device' / MDM to lock or wipe the lost/stolen device remotely if data is sensitive.",
+    'im.9':'Designate ONE incident lead to make decisions and take notes. Avoid mass discussion in compromised channels.',
+    'con.1':'Inventory: list every account, device, and service the affected user/team has access to. Mark which ones share passwords or sessions.',
+    'con.2':"Sign out all sessions from each affected account ('log out everywhere' / 'revoke active sessions').",
+    'con.3':'Rotate API tokens, app passwords, OAuth grants, and shared admin credentials.',
+    'con.email':'Check email forwarding rules, filters, and recovery addresses for tampering. Attackers often add hidden auto-forwards.',
+    'con.cloud':"Review cloud share links and external collaborators. Revoke any sharing you don't recognise. Check trash for mass-deleted files.",
+    'con.server':'Take the website offline or behind maintenance mode. Snapshot disks before any cleanup. Check for new admin users and webshells.',
+    'con.social':'Use platform-specific account recovery (Meta Business help, X compromised account form, Google security checkup).',
+    'con.surveil':'Assume mobile spyware: stop using the device for sensitive comms. Switch to Signal on a clean phone. Reach the Access Now helpline before factory-resetting — they can help preserve evidence.',
+    'con.ransom':'Isolate backups so ransomware cannot reach them. Verify offline / immutable backups exist before any recovery attempt.',
+    'con.log':'Start a written incident log: timestamp, observation, action taken, who did it. This becomes your evidence trail.',
+    'rec.laptop':"Wipe and re-install affected laptops/desktops from trusted media. Don't 'clean' them with antivirus alone — you cannot fully trust a compromised OS.",
+    'rec.phone':'Factory-reset phones AFTER evidence is preserved. Re-install only essential apps from official stores.',
+    'rec.backup':'Restore data from a backup made BEFORE the suspected intrusion date. Scan restored files before opening.',
+    'rec.reenrol':'Re-enrol devices in MDM, re-issue certificates, and rotate any shared SSH or VPN keys.',
+    'rec.server':'Patch the underlying vulnerability (CMS, plugin, OS, exposed admin panel) before bringing the server back online. Add a WAF and rate-limiting.',
+    'rec.network':'Reset router admin password, update firmware, change Wi-Fi SSID & WPA2/WPA3 password, disable WPS and remote admin.',
+    'rec.allclear':"Run a final 'all clear' check: review recent logins, OAuth apps, mail filters, browser extensions, scheduled tasks, startup items.",
+    'not.who.beneficiary':'beneficiaries','not.who.donor':'donors','not.who.staff':'staff','not.who.reports':'sources',
+    'not.affected':'Notify affected {1} — in the safest channel available, with clear language about what was exposed and what they should do.',
+    'not.board':'Inform your board / leadership in writing within 24 hours. Decide together on public communication.',
+    'not.legal':'Check whether your country (and the countries of affected people) require breach notification to a data-protection authority (e.g. GDPR — within 72 hours).',
+    'not.crim':"If criminal activity occurred, consider filing a report with police / national CERT — but only if doing so won't endanger your team or sources.",
+    'not.msg':'Coordinate one consistent message externally. Avoid speculation; share facts and remediation steps.',
+    'lt.1':'Conduct a blameless post-incident review within 2 weeks. Document root cause, gaps, and changes.',
+    'lt.2':'Roll out a password manager and phishing-resistant 2FA (hardware keys like YubiKey, or passkeys) for the whole team.',
+    'lt.3':'Apply the principle of least privilege: review who really needs admin access to email, cloud, social, and finance tools.',
+    'lt.4':'Set up automated, encrypted, off-site backups with at least one offline copy. Test restoration quarterly.',
+    'lt.5':'Run an annual phishing drill and a 30-minute digital-security refresher with all staff and volunteers.',
+    'lt.state':"Adopt a 'high-risk' posture: Signal-only for sensitive comms, separate work and personal devices, use Lockdown Mode (iOS) / Advanced Protection (Google), brief staff on travel hygiene.",
+    'lt.plan':'Write a 1-page Incident Response Plan and pin it where the team can find it (not only on the compromised systems).',
+    'dnt.1':"Don't power off computers if you suspect spyware — RAM evidence will be lost.",
+    'dnt.2':"Don't change passwords from the device you suspect is compromised.",
+    'dnt.3':"Don't delete the phishing email, ransom note, or suspicious files. They are evidence.",
+    'dnt.4':"Don't pay a ransom without expert advice. Payment doesn't guarantee recovery and can fund further attacks.",
+    'dnt.5':"Don't publicly accuse anyone before you have evidence — it can damage your credibility and your case.",
+    'dnt.6':"Don't reuse compromised passwords on any other account."
   },
-  {
-    id:"signs",
-    title:"What signs of compromise have you noticed?",
-    sub:"Pick all that apply. Be honest — overestimating is safer than underestimating.",
-    type:"multi",
-    options:[
-      {v:"phishing",label:"Suspicious email / link clicked",desc:"Phishing message, fake login page, malicious attachment"},
-      {v:"ransom",label:"Files locked / ransom note",desc:"Files renamed, encrypted, ransom demand visible"},
-      {v:"account",label:"Account take-over",desc:"Locked out, unknown logins, password changed"},
-      {v:"malware",label:"Strange device behaviour",desc:"Slow performance, unknown apps, pop-ups, mic/cam light on"},
-      {v:"surveil",label:"Targeted surveillance suspected",desc:"State actor, spyware, mercenary tools (e.g. Pegasus)"},
-      {v:"social",label:"Social-media / website hijack",desc:"Posts you didn't make, defacement, DNS changes"},
-      {v:"insider",label:"Insider / lost device",desc:"Stolen, lost or accessed by an untrusted person"},
-      {v:"unknown",label:"I'm not sure yet",desc:"Something feels wrong but unconfirmed"}
-    ]
+  az: {
+    'app.tagline':'QHT Hadisə Cavab Dəsti',
+    'nav.about':'Haqqında','nav.resources':'Resurslar',
+    'nav.download.full':'Windows alətini yüklə','nav.download.short':'Yüklə',
+    'hero.pill':'QHT-lər, aktivistlər, jurnalistlər və humanitar komandalar üçün',
+    'hero.h1':'Cihazlarınız hack edildi.<br/>5 dəqiqədə plan tərtib edək.',
+    'hero.desc':'CyberShield nə baş verdiyi haqqında bir neçə konkret sual verir, sonra QHT-nizə pozuntunu lokallaşdırmağa, girişi bərpa etməyə və növbəti hücumun qarşısını almağa kömək etmək üçün fərdi, addım-addım fəaliyyət planı yaradır.',
+    'hero.start':'Qiymətləndirməyə başla →','hero.viewres':'Resurslara bax',
+    'warn.title':'Sakit olun. Hələ söndürməyin.',
+    'warn.body':'Aktiv hücumdan şübhələnirsinizsə, Wi-Fi/Ethernet-dən ayrılın, lakin cihazı yanılı saxlayın — ekspertiza məlumatları yaddaşda yaşayır.',
+    'tip.1':'Hücumçuya xəbər verməyin — bu barədə açıq yazmayın.',
+    'tip.2':'Təhlükə altında olan cihazdan parolları dəyişməyin.',
+    'tip.3':'Komanda ilə əlaqə üçün təmiz telefondan istifadə edin.',
+    'tip.4':'Gördüyünüz hər şeyi sənədləşdirin — ekran görüntüləri, vaxtlar, şübhəli mesajlar.',
+    'stats.scenarios':'Əhatə olunan təhlükə ssenariləri','stats.window':'Kritik lokallaşdırma müddəti',
+    'stats.free.value':'Pulsuz','stats.free.label':'Hər QHT üçün həmişə',
+    'res.title':'Risk altındakı qruplar üçün etibarlı resurslar',
+    'footer.note':'CyberShield pulsuz şablondur. O, peşəkar insident cavabını əvəz etmir. Həyat riski varsa, dərhal CERT və ya Access Now yardım xəttinə müraciət edin.',
+    'wiz.restart':'Yenidən başla','wiz.step':'Addım {1} / {2}','wiz.back':'← Geri','wiz.next':'İrəli →','wiz.generate':'Fəaliyyət planı yarat →',
+    'wiz.text.ph':'Bir neçə cümlə yazın (məcburi deyil)…',
+    'wiz.validate.single':'Davam etmək üçün bir variant seçin.','wiz.validate.multi':'Davam etmək üçün ən azı bir variant seçin.',
+    'q.role.title':'QHT-dəki rolunuz nədir?','q.role.sub':'Bu, planın dilini və səlahiyyət səviyyəsini uyğunlaşdırmağa kömək edir.',
+    'q.signs.title':'Hansı təhlükəsizlik pozuntusu əlamətləri müşahidə edirsiniz?','q.signs.sub':'Uyğun gələnlərin hamısını seçin. Dürüst olun — həddindən artıq qiymətləndirmək daha təhlükəsizdir.',
+    'q.devices.title':'Hansı cihaz və ya sistemlər təsirlənib?','q.devices.sub':'Uyğun gələnlərin hamısını seçin.',
+    'q.data.title':'Hansı həssas məlumatlar açıqlana bilər?','q.data.sub':'Bu, risk qiymətləndirmə və bildiriş tövsiyələrimizi müəyyən edir.',
+    'q.actor.title':'Bunun arxasında kimin olduğundan şübhələnirsiniz?','q.actor.sub':'Ən yaxşı təxmin — biz buna uyğun müdafiə mövqeyi təklif edəcəyik.',
+    'q.when.title':'Problemi ilk dəfə nə vaxt gördünüz?','q.when.sub':'Lokallaşdırma və dəlillər üçün vaxt kritikdir.',
+    'q.context.title':'Başqa bilməli olduğumuz bir şey varmı?','q.context.sub':'Məcburi deyil. Məs. "internet məhdudiyyəti olan ölkədəyik", "işçilər sahədədir", "IT məsulumuz yoxdur".',
+    'opt.role.leadership.label':'Rəhbərlik / Direktor','opt.role.leadership.desc':'Qərar verən şəxs, xərc və kommunikasiyaya icazə verə bilər',
+    'opt.role.it.label':'İT / Texniki məsul','opt.role.it.desc':'Cihazları, hesabları və infrastrukturu idarə edir',
+    'opt.role.staff.label':'Proqram işçisi','opt.role.staff.desc':'Cihazdan istifadə edən sahə və ya ofis işçisi',
+    'opt.role.volunteer.label':'Könüllü / Digər','opt.role.volunteer.desc':'İnsidentə cavaba kömək edir',
+    'opt.signs.phishing.label':'Şübhəli e-poçt / link klikləndi','opt.signs.phishing.desc':'Fişinq mesajı, saxta giriş səhifəsi, zərərli qoşma',
+    'opt.signs.ransom.label':'Fayllar kilidləndi / fidyə tələbi','opt.signs.ransom.desc':'Fayllar adlandırılıb, şifrələnib, fidyə tələbi görünür',
+    'opt.signs.account.label':'Hesabın ələ keçirilməsi','opt.signs.account.desc':'Kilidləndi, naməlum girişlər, parol dəyişdirildi',
+    'opt.signs.malware.label':'Qəribə cihaz davranışı','opt.signs.malware.desc':'Yavaş işləmə, naməlum proqramlar, pop-uplar, mikrofon/kamera işığı yanır',
+    'opt.signs.surveil.label':'Hədəflənmiş izləmə şübhəsi','opt.signs.surveil.desc':'Dövlət aktoru, casus proqramı, muzdlu alətlər (məs. Pegasus)',
+    'opt.signs.social.label':'Sosial media / saytın ələ keçirilməsi','opt.signs.social.desc':'Sizin yazmadığınız yazılar, defasment, DNS dəyişiklikləri',
+    'opt.signs.insider.label':'Daxili / itirilmiş cihaz','opt.signs.insider.desc':'Oğurlanıb, itirilib və ya etibarsız şəxs tərəfindən istifadə olunub',
+    'opt.signs.unknown.label':'Hələ əmin deyiləm','opt.signs.unknown.desc':'Nəsə səhv görünür, amma təsdiqlənməyib',
+    'opt.devices.laptop.label':'Noutbuk / Stolüstü kompüter','opt.devices.laptop.desc':'Windows, macOS və ya Linux',
+    'opt.devices.phone.label':'Mobil telefon','opt.devices.phone.desc':'Android və ya iPhone',
+    'opt.devices.email.label':'E-poçt hesabı','opt.devices.email.desc':'Gmail, Outlook, ProtonMail və s.',
+    'opt.devices.cloud.label':'Bulud / fayl saxlama','opt.devices.cloud.desc':'Google Drive, Dropbox, OneDrive, Nextcloud',
+    'opt.devices.social.label':'Sosial media','opt.devices.social.desc':'Facebook, X/Twitter, Instagram, WhatsApp',
+    'opt.devices.server.label':'Server / veb sayt','opt.devices.server.desc':'QHT-nin saytı, CRM, donor bazası',
+    'opt.devices.network.label':'Ofis Wi-Fi / router','opt.devices.network.desc':'Şəbəkənin özündən şübhələnirsiniz',
+    'opt.data.beneficiary.label':'Benefisiar şəxsiyyətləri','opt.data.beneficiary.desc':'Həssas insanların adları, yerləri',
+    'opt.data.donor.label':'Donor / maliyyə məlumatı','opt.data.donor.desc':'Bank rekvizitləri, ianə qeydləri',
+    'opt.data.staff.label':'İşçi şəxsi məlumatları','opt.data.staff.desc':'Şəxsiyyət, maaş, ev ünvanı',
+    'opt.data.comms.label':'Daxili kommunikasiyalar','opt.data.comms.desc':'E-poçt, söhbətlər, görüş qeydləri',
+    'opt.data.reports.label':'Araşdırmalar / mənbələr','opt.data.reports.desc':'Həssas hesabatlar, informatorlar, şahidlər',
+    'opt.data.none.label':'Xüsusilə həssas heç nə','opt.data.none.desc':'Yalnız açıq materiallar',
+    'opt.actor.opportunistic.label':'Fürsət axtaran cinayətkarlar','opt.actor.opportunistic.desc':'Ümumi fişinq, kirayə fidyə proqramı',
+    'opt.actor.hacktivist.label':'Haktivistlər / onlayn izdiham','opt.actor.hacktivist.desc':'Əlaqələndirilmiş təqib, doksinq',
+    'opt.actor.corporate.label':'Düşmən korporativ / yerli elita','opt.actor.corporate.desc':'Pullu, lakin məhdud texniki rəqib',
+    'opt.actor.state.label':'Dövlət / dövlətə yaxın aktor','opt.actor.state.desc':'Hökumət, kəşfiyyat xidməti, muzdlu casus proqramı',
+    'opt.actor.unknown.label':'Tamamilə məlum deyil','opt.actor.unknown.desc':'Hələ aydın fərziyyə yoxdur',
+    'opt.when.now.label':'Hazırda baş verir','opt.when.now.desc':'Son bir saat ərzində',
+    'opt.when.today.label':'Bu gün əvvəl','opt.when.today.desc':'Son 24 saat ərzində',
+    'opt.when.week.label':'Bu həftə','opt.when.week.desc':'1–7 gün əvvəl',
+    'opt.when.older.label':'Bir həftədən çox əvvəl','opt.when.older.desc':'Daha əvvəl və ya bilinmir',
+    'plan.print':'🖨 Çap et / PDF saxla','plan.copy':'📋 Planı kopyala','plan.new':'↻ Yeni qiymətləndirmə',
+    'plan.copied':'Fəaliyyət planı buferə kopyalandı.',
+    'plan.title':'Fəaliyyət Planınız','plan.meta':'QHT insident cavabı üçün {1} tarixində yaradıldı. Bal: {2}.',
+    'plan.severity':'Ciddilik:','plan.sev.low':'Aşağı','plan.sev.med':'Orta','plan.sev.high':'Yüksək',
+    'plan.summary.title':'Vəziyyət xülasəsi','plan.summary.signs':'Bildirilən əlamətlər:','plan.summary.devices':'Təsirlənən sistemlər:',
+    'plan.summary.data':'Əhatə olunan həssas məlumatlar:','plan.summary.actor':'Şübhəli aktor:','plan.summary.when':'İlk dəfə qeyd olundu:',
+    'plan.summary.context':'Kontekst:','plan.summary.role':'Rolunuz:','plan.summary.none':'göstərilməyib','plan.summary.unknown':'bilinmir',
+    'plan.immediate.title':'🚨 İlk 60 dəqiqə — Təcili addımlar','plan.contain.title':'🛡 İlk 24 saat — Lokallaşdırma',
+    'plan.recovery.title':'🔧 1–7-ci günlər — Bərpa','plan.notify.title':'📣 Bildiriş və kommunikasiyalar',
+    'plan.longterm.title':'🌱 İnsidentdən sonra — Möhkəmləndirmə','plan.trySuggestions':'🛠 Digər təkliflərə bax →',
+    'plan.dont.title':'Etməli OLMAYANLAR','plan.help.title':'📞 Ekspert köməyi al','plan.log.title':'🗒 İnsident jurnalı — bu şablonu kopyala',
+    'log.date':'Açılış tarixi','log.lead':'İnsident məsulu','log.severity':'Ciddilik','log.timeline':'Zaman xətti',
+    'log.detected':'Aşkarlandı','log.isolated':'Cihazlar təcrid edildi','log.passwords':'Parollar dəyişdirildi',
+    'log.leadership':'Rəhbərlik xəbərdar edildi','log.external':'Xarici kömək çağırıldı','log.recovery':'Bərpa başladı','log.closed':'İnsident bağlandı',
+    'log.accounts':'Təsirlənən hesablar/cihazlar','log.evidence':'Qorunan dəlillər (ekran görüntüləri, fayllar, e-poçtlar)',
+    'log.decisions':'Verilən qərarlar və kim tərəfindən','log.lessons':'Öyrənilən dərslər',
+    'role.leadership':'Siz qərar verən səlahiyyətdəsiniz. Təcili kömək üçün xərcləri təsdiq edin, xarici mesajlaşmanı imzalayın və cavab verən komandanı günahlandırılmaqdan qoruyun.',
+    'role.it':'Siz texniki rəhbərsiniz. Əvvəlcə dəlilləri qoruyun, sonra lokallaşdırın, sonra bərpa edin. İcra etdiyiniz hər əmri sənədləşdirin.',
+    'role.staff':'Təsirlənən cihazı İT məsuluna verin və ya rəhbərliyə eskalasiya edin. Özünüz düzəltməyə çalışmayın, LAKIN xatırladığınız hər şeyi yazın.',
+    'role.volunteer':'Logistika ilə rəhbərə dəstək olun: təmiz cihazlar, yemək, əlaqə siyahıları, qeydlər. Kompromis hesablara daxil olmayın.',
+    'im.1':'Sakit olun. Sakit bir yerə keçin və koordinasiya üçün təmiz cihazdan (insidentə qarışmayan şəxsi telefondan) istifadə edin.',
+    'im.2':'Təsirlənən cihazları internetdən ayırın (Wi-Fi söndürün, Ethernet ayırın, uçuş rejimini aktivləşdirin). Söndürməyin — ekspertiza üçün yanılı saxlayın.',
+    'im.3':'Ofis routerini internetdən ayırın, amma enerjidə saxlayın. Şəbəkədə tanımadığınız cihazları qeyd edin.',
+    'im.4':'Hələ fidyə ödəməyin. Fidyə tələbini və fayl uzantılarını şəkil çəkin. Access Now və ya yerli CERT-ə müraciət edin.',
+    'im.5':'TƏMİZ cihazdan ən kritik hesabların parollarını dəyişin (əvvəlcə e-poçt, sonra bank, sonra sosial/bulud). Parol meneceri və unikal parollardan istifadə edin.',
+    'im.6':'Bərpa olunan hesablarda aparat açarı və ya tətbiq əsaslı 2FA aktivləşdirin. Mümkün olduqda SMS əsaslı 2FA-dan qaçının.',
+    'im.7':'Nə kliklədiyinizi, nə vaxt və hansı cihaz/hesabdan olduğunu müəyyənləşdirin. Orijinal fişinq e-poçtunu saxlayın (silmə).',
+    'im.8':"Məlumat həssasdırsa, 'Cihazımı Tap'/MDM vasitəsilə itirilmiş/oğurlanmış cihazı uzaqdan kilidləyin və ya silin.",
+    'im.9':'Qərar verəcək və qeydlər aparacaq BİR insident məsulu təyin edin. Kompromis kanallarda kütləvi müzakirədən qaçının.',
+    'con.1':'İnventar: təsirlənən istifadəçi/komandanın çıxışı olan hər hesabı, cihazı və xidməti siyahıya alın. Hansıların parol və ya sessiya paylaşdığını qeyd edin.',
+    'con.2':"Hər təsirlənən hesabdan bütün sessiyaları çıxın ('hər yerdən çıx' / 'aktiv sessiyaları ləğv et').",
+    'con.3':'API tokenlərini, tətbiq parollarını, OAuth icazələrini və paylaşılan admin etimadnamələrini dəyişdirin.',
+    'con.email':'E-poçt yönləndirmə qaydalarını, filtrləri və bərpa ünvanlarını manipulyasiyadan yoxlayın. Hücumçular çox vaxt gizli avtomatik yönləndirmələr əlavə edirlər.',
+    'con.cloud':'Bulud paylaşma linklərini və xarici əməkdaşları nəzərdən keçirin. Tanımadığınız paylaşmaları ləğv edin. Kütləvi silinən fayllar üçün zibildə yoxlayın.',
+    'con.server':'Veb saytı oflayn və ya texniki iş rejiminə keçirin. Təmizləmədən əvvəl disk snapşotu çəkin. Yeni admin istifadəçilər və webshell-lər üçün yoxlayın.',
+    'con.social':'Platformaya məxsus hesab bərpasından istifadə edin (Meta Business dəstəyi, X kompromis hesab forması, Google təhlükəsizlik yoxlaması).',
+    'con.surveil':'Mobil casus proqramı fərz edin: cihazı həssas kommunikasiyalar üçün istifadə etməyin. Təmiz telefonda Signal-a keçin. Fabrika sıfırlamasından əvvəl Access Now yardım xəttinə çatın — dəlilləri qorumağa kömək edə bilərlər.',
+    'con.ransom':'Ransomware çata bilməsin deyə yedəkləri təcrid edin. Hər hansı bərpa cəhdindən əvvəl oflayn / dəyişdirilə bilməyən yedəklərin olduğunu təsdiqləyin.',
+    'con.log':'Yazılı insident jurnalına başlayın: vaxt damgası, müşahidə, görülən tədbir, kim etdi. Bu, dəlil izinizdir.',
+    'rec.laptop':"Təsirlənən noutbuk/stolüstü kompüterləri etibarlı mediadan silin və yenidən qurun. Sadəcə antivirusla 'təmizləməyin' — kompromis ƏS-ə tam inana bilməzsiniz.",
+    'rec.phone':'Dəlillər qorunduqdan SONRA telefonları fabrika sıfırlaması edin. Yalnız zəruri tətbiqləri rəsmi mağazalardan yenidən quraşdırın.',
+    'rec.backup':'Şübhəli müdaxilə tarixindən ƏVVƏL edilmiş yedəkdən məlumatları bərpa edin. Açmadan əvvəl bərpa edilmiş faylları yoxlayın.',
+    'rec.reenrol':'Cihazları yenidən MDM-ə qeyd edin, sertifikatları yenidən verin və paylaşılan SSH və ya VPN açarlarını dəyişdirin.',
+    'rec.server':'Serveri yenidən onlayn etməzdən əvvəl əsas zəifliyi (CMS, plagin, ƏS, açıq admin paneli) yamayın. WAF və sürət məhdudiyyəti əlavə edin.',
+    'rec.network':'Router admin parolunu sıfırlayın, proqram təminatını yeniləyin, Wi-Fi SSID və WPA2/WPA3 parolunu dəyişdirin, WPS və uzaq idarəçiliyi söndürün.',
+    'rec.allclear':"Son 'hamısı aydın' yoxlaması aparın: son girişləri, OAuth tətbiqlərini, poçt filtrlərini, brauzer genişləndirmələrini, planlı tapşırıqları, başlanğıc elementlərini nəzərdən keçirin.",
+    'not.who.beneficiary':'benefisiarları','not.who.donor':'donorları','not.who.staff':'işçiləri','not.who.reports':'mənbələri',
+    'not.affected':'Təsirlənən {1} — mövcud ən təhlükəsiz kanalda, nəyin açıqlandığı və onların nə etməli olduğu barədə aydın dildə xəbərdar edin.',
+    'not.board':'24 saat ərzində idarə heyətinizə / rəhbərliyinizə yazılı məlumat verin. İctimai kommunikasiya barədə birlikdə qərar verin.',
+    'not.legal':'Ölkənizin (və təsirlənən insanların ölkələrinin) məlumatların mühafizəsi orqanına (məs. GDPR — 72 saat ərzində) pozuntu bildirişi tələb edib-etmədiyini yoxlayın.',
+    'not.crim':'Cinayət fəaliyyəti baş veribsə, polisə / milli CERT-ə məlumat verməyi düşünün — amma yalnız bu sizin komandanızı və ya mənbələrinizi təhlükəyə atmırsa.',
+    'not.msg':'Xaricdə bir tutarlı mesaj koordinasiya edin. Fərziyyədən qaçının; faktları və düzəltmə addımlarını paylaşın.',
+    'lt.1':'2 həftə ərzində günahlandırmasız insident sonrası nəzərdən keçirmə aparın. Kök səbəbi, boşluqları və dəyişiklikləri sənədləşdirin.',
+    'lt.2':'Bütün komandaya parol meneceri və fişinqə davamlı 2FA (YubiKey kimi aparat açarları və ya passkey) tətbiq edin.',
+    'lt.3':'Ən az imtiyaz prinsipini tətbiq edin: e-poçt, bulud, sosial və maliyyə alətlərinə kimin həqiqətən admin çıxışına ehtiyacı olduğunu nəzərdən keçirin.',
+    'lt.4':'Ən azı bir oflayn nüsxə ilə avtomatlaşdırılmış, şifrələnmiş, ofsayt yedəklər qurun. Bərpanı hər rüb test edin.',
+    'lt.5':'İllik fişinq təlimi və bütün işçilər və könüllülərlə 30 dəqiqəlik rəqəmsal təhlükəsizlik yeniləməsi keçirin.',
+    'lt.state':"'Yüksək riskli' mövqe götürün: həssas kommunikasiyalar üçün yalnız Signal, iş və şəxsi cihazları ayırın, Lockdown Mode (iOS) / Advanced Protection (Google) istifadə edin, səyahət gigienası barədə işçiləri təlimatlandırın.",
+    'lt.plan':'Komandanın tapa biləcəyi (yalnız kompromis sistemlərdə deyil) 1 səhifəlik İnsident Cavab Planı yazın və orada saxlayın.',
+    'dnt.1':'Casus proqramından şübhələnirsinizsə kompüterləri söndürməyin — RAM dəlili itəcək.',
+    'dnt.2':'Kompromis olduğundan şübhələndiyiniz cihazdan parolları dəyişməyin.',
+    'dnt.3':'Fişinq e-poçtunu, fidyə tələbini və ya şübhəli faylları silməyin. Onlar dəlildir.',
+    'dnt.4':'Ekspert məsləhəti olmadan fidyə ödəməyin. Ödəniş bərpaya zəmanət vermir və gələcək hücumları maliyyələşdirə bilər.',
+    'dnt.5':'Dəliliniz olmadan kimisə açıq şəkildə ittiham etməyin — bu etibarınıza və işinizə zərər verə bilər.',
+    'dnt.6':'Kompromisə uğramış parolları başqa hesablarda yenidən istifadə etməyin.'
   },
-  {
-    id:"devices",
-    title:"Which devices or systems are affected?",
-    sub:"Pick all that apply.",
-    type:"multi",
-    options:[
-      {v:"laptop",label:"Laptop / Desktop",desc:"Windows, macOS or Linux"},
-      {v:"phone",label:"Mobile phone",desc:"Android or iPhone"},
-      {v:"email",label:"Email account",desc:"Gmail, Outlook, ProtonMail, etc."},
-      {v:"cloud",label:"Cloud / file storage",desc:"Google Drive, Dropbox, OneDrive, Nextcloud"},
-      {v:"social",label:"Social media",desc:"Facebook, X/Twitter, Instagram, WhatsApp"},
-      {v:"server",label:"Server / website",desc:"NGO's website, CRM, donor database"},
-      {v:"network",label:"Office Wi-Fi / router",desc:"Suspect the network itself is compromised"}
-    ]
-  },
-  {
-    id:"data",
-    title:"What sensitive data could be exposed?",
-    sub:"This drives our risk rating and notification advice.",
-    type:"multi",
-    options:[
-      {v:"beneficiary",label:"Beneficiary identities",desc:"Names, locations of vulnerable people"},
-      {v:"donor",label:"Donor / financial info",desc:"Bank details, donation records"},
-      {v:"staff",label:"Staff personal data",desc:"IDs, salaries, home addresses"},
-      {v:"comms",label:"Internal communications",desc:"Email, chats, meeting notes"},
-      {v:"reports",label:"Investigations / sources",desc:"Sensitive reporting, whistleblowers, witnesses"},
-      {v:"none",label:"Nothing especially sensitive",desc:"Public materials only"}
-    ]
-  },
-  {
-    id:"actor",
-    title:"Who do you suspect is behind this?",
-    sub:"Best guess — we'll suggest a defensive posture accordingly.",
-    type:"single",
-    options:[
-      {v:"opportunistic",label:"Opportunistic criminals",desc:"Generic phishing, ransomware-for-hire"},
-      {v:"hacktivist",label:"Hacktivists / online mob",desc:"Coordinated harassment, doxxing"},
-      {v:"corporate",label:"Hostile corporate / local elite",desc:"Adversary with money but limited tech"},
-      {v:"state",label:"State / state-aligned actor",desc:"Government, intelligence service, mercenary spyware"},
-      {v:"unknown",label:"Truly unknown",desc:"No clear hypothesis yet"}
-    ]
-  },
-  {
-    id:"when",
-    title:"When did you first notice the issue?",
-    sub:"Time is critical for containment & evidence.",
-    type:"single",
-    options:[
-      {v:"now",label:"It is happening right now",desc:"Within the last hour"},
-      {v:"today",label:"Earlier today",desc:"Within last 24 hours"},
-      {v:"week",label:"This week",desc:"1–7 days ago"},
-      {v:"older",label:"More than a week ago",desc:"Older or unknown"}
-    ]
-  },
-  {
-    id:"context",
-    title:"Anything else we should know?",
-    sub:"Optional. e.g. 'we are in a country with internet restrictions', 'staff are in the field', 'we have no IT person'.",
-    type:"text"
+  ru: {
+    'app.tagline':'Набор для реагирования на инциденты для НКО',
+    'nav.about':'О проекте','nav.resources':'Ресурсы',
+    'nav.download.full':'Скачать инструмент для Windows','nav.download.short':'Скачать',
+    'hero.pill':'Для НКО, активистов, журналистов и гуманитарных команд',
+    'hero.h1':'Ваши устройства взломаны.<br/>Составим план за 5 минут.',
+    'hero.desc':'CyberShield задаёт несколько точных вопросов о случившемся, а затем создаёт индивидуальный пошаговый план действий, чтобы помочь вашей НКО локализовать утечку, восстановить доступ и предотвратить следующую атаку.',
+    'hero.start':'Начать оценку →','hero.viewres':'Посмотреть ресурсы',
+    'warn.title':'Сохраняйте спокойствие. Не выключайте устройство.',
+    'warn.body':'Если вы подозреваете активную атаку, отключитесь от Wi-Fi/Ethernet, но оставьте устройство включённым — криминалистические данные находятся в памяти.',
+    'tip.1':'Не предупреждайте злоумышленника — не пишите об этом публично.',
+    'tip.2':'Не меняйте пароли со скомпрометированного устройства.',
+    'tip.3':'Используйте чистый телефон для связи с командой.',
+    'tip.4':'Документируйте всё — скриншоты, время, подозрительные сообщения.',
+    'stats.scenarios':'Учтённых сценариев угроз','stats.window':'Критическое окно реагирования',
+    'stats.free.value':'Бесплатно','stats.free.label':'Всегда, для каждой НКО',
+    'res.title':'Проверенные ресурсы для групп в зоне риска',
+    'footer.note':'CyberShield — бесплатный шаблон. Он не заменяет профессиональное реагирование на инциденты. Если жизни в опасности, немедленно свяжитесь с CERT или Access Now.',
+    'wiz.restart':'Начать заново','wiz.step':'Шаг {1} из {2}','wiz.back':'← Назад','wiz.next':'Далее →','wiz.generate':'Создать план действий →',
+    'wiz.text.ph':'Напишите пару предложений (необязательно)…',
+    'wiz.validate.single':'Выберите один вариант, чтобы продолжить.','wiz.validate.multi':'Выберите хотя бы один вариант, чтобы продолжить.',
+    'q.role.title':'Какова ваша роль в НКО?','q.role.sub':'Это поможет подобрать тон и уровень полномочий плана.',
+    'q.signs.title':'Какие признаки компрометации вы заметили?','q.signs.sub':'Выберите все подходящие. Будьте честны — переоценить безопаснее, чем недооценить.',
+    'q.devices.title':'Какие устройства или системы затронуты?','q.devices.sub':'Выберите все подходящие.',
+    'q.data.title':'Какие конфиденциальные данные могут быть раскрыты?','q.data.sub':'От этого зависят оценка риска и рекомендации по уведомлениям.',
+    'q.actor.title':'Кого вы подозреваете?','q.actor.sub':'Лучшее предположение — мы предложим подходящую оборонительную стратегию.',
+    'q.when.title':'Когда вы впервые заметили проблему?','q.when.sub':'Время критично для локализации и доказательств.',
+    'q.context.title':'Что-то ещё, о чём нам следует знать?','q.context.sub':'Необязательно. Например: «мы в стране с интернет-ограничениями», «сотрудники в полевых условиях», «у нас нет ИТ-специалиста».',
+    'opt.role.leadership.label':'Руководство / Директор','opt.role.leadership.desc':'Принимает решения, может разрешить расходы и коммуникации',
+    'opt.role.it.label':'ИТ / Технический ответственный','opt.role.it.desc':'Управляет устройствами, аккаунтами, инфраструктурой',
+    'opt.role.staff.label':'Сотрудник программы','opt.role.staff.desc':'Полевой или офисный сотрудник, использующий устройство',
+    'opt.role.volunteer.label':'Волонтёр / Другое','opt.role.volunteer.desc':'Помогает в реагировании на инцидент',
+    'opt.signs.phishing.label':'Подозрительное письмо / клик по ссылке','opt.signs.phishing.desc':'Фишинг, поддельная страница входа, вредоносное вложение',
+    'opt.signs.ransom.label':'Файлы заблокированы / требование выкупа','opt.signs.ransom.desc':'Файлы переименованы, зашифрованы, видно требование выкупа',
+    'opt.signs.account.label':'Захват аккаунта','opt.signs.account.desc':'Заблокирован, неизвестные входы, пароль изменён',
+    'opt.signs.malware.label':'Странное поведение устройства','opt.signs.malware.desc':'Тормоза, неизвестные приложения, поп-апы, горит индикатор микро/камеры',
+    'opt.signs.surveil.label':'Подозрение на целевую слежку','opt.signs.surveil.desc':'Государственный актор, шпионское ПО, наёмные инструменты (напр. Pegasus)',
+    'opt.signs.social.label':'Взлом соцсетей / сайта','opt.signs.social.desc':'Публикации не от вас, дефейс, изменения DNS',
+    'opt.signs.insider.label':'Инсайдер / потерянное устройство','opt.signs.insider.desc':'Украдено, потеряно или доступ получил ненадёжный человек',
+    'opt.signs.unknown.label':'Пока не уверен(а)','opt.signs.unknown.desc':'Что-то не так, но не подтверждено',
+    'opt.devices.laptop.label':'Ноутбук / Настольный ПК','opt.devices.laptop.desc':'Windows, macOS или Linux',
+    'opt.devices.phone.label':'Мобильный телефон','opt.devices.phone.desc':'Android или iPhone',
+    'opt.devices.email.label':'Почтовый аккаунт','opt.devices.email.desc':'Gmail, Outlook, ProtonMail и т. п.',
+    'opt.devices.cloud.label':'Облако / файловое хранилище','opt.devices.cloud.desc':'Google Drive, Dropbox, OneDrive, Nextcloud',
+    'opt.devices.social.label':'Соцсети','opt.devices.social.desc':'Facebook, X/Twitter, Instagram, WhatsApp',
+    'opt.devices.server.label':'Сервер / сайт','opt.devices.server.desc':'Сайт НКО, CRM, база доноров',
+    'opt.devices.network.label':'Офисный Wi-Fi / роутер','opt.devices.network.desc':'Подозрение, что скомпрометирована сама сеть',
+    'opt.data.beneficiary.label':'Личности благополучателей','opt.data.beneficiary.desc':'Имена, местоположения уязвимых людей',
+    'opt.data.donor.label':'Доноры / финансы','opt.data.donor.desc':'Банковские реквизиты, записи пожертвований',
+    'opt.data.staff.label':'Персональные данные сотрудников','opt.data.staff.desc':'Документы, зарплаты, домашние адреса',
+    'opt.data.comms.label':'Внутренние коммуникации','opt.data.comms.desc':'Почта, чаты, заметки встреч',
+    'opt.data.reports.label':'Расследования / источники','opt.data.reports.desc':'Чувствительная отчётность, информаторы, свидетели',
+    'opt.data.none.label':'Ничего особенно чувствительного','opt.data.none.desc':'Только публичные материалы',
+    'opt.actor.opportunistic.label':'Рядовые преступники','opt.actor.opportunistic.desc':'Массовый фишинг, ransomware-as-a-service',
+    'opt.actor.hacktivist.label':'Хактивисты / травля онлайн','opt.actor.hacktivist.desc':'Координированная травля, доксинг',
+    'opt.actor.corporate.label':'Враждебный корпоративный / местные элиты','opt.actor.corporate.desc':'Противник с деньгами, но ограниченной техникой',
+    'opt.actor.state.label':'Государственный / проправительственный актор','opt.actor.state.desc':'Правительство, спецслужба, наёмное шпионское ПО',
+    'opt.actor.unknown.label':'Неизвестно','opt.actor.unknown.desc':'Чёткой гипотезы пока нет',
+    'opt.when.now.label':'Это происходит прямо сейчас','opt.when.now.desc':'В пределах последнего часа',
+    'opt.when.today.label':'Сегодня','opt.when.today.desc':'В пределах последних 24 часов',
+    'opt.when.week.label':'На этой неделе','opt.when.week.desc':'1–7 дней назад',
+    'opt.when.older.label':'Больше недели назад','opt.when.older.desc':'Раньше или неизвестно',
+    'plan.print':'🖨 Печать / Сохранить PDF','plan.copy':'📋 Скопировать план','plan.new':'↻ Новая оценка',
+    'plan.copied':'План действий скопирован в буфер обмена.',
+    'plan.title':'Ваш план действий','plan.meta':'Сгенерирован {1} для реагирования НКО. Баллы: {2}.',
+    'plan.severity':'Серьёзность:','plan.sev.low':'Низкая','plan.sev.med':'Средняя','plan.sev.high':'Высокая',
+    'plan.summary.title':'Сводка по ситуации','plan.summary.signs':'Замеченные признаки:','plan.summary.devices':'Затронутые системы:',
+    'plan.summary.data':'Затронутые конфиденциальные данные:','plan.summary.actor':'Предполагаемый актор:','plan.summary.when':'Впервые замечено:',
+    'plan.summary.context':'Контекст:','plan.summary.role':'Ваша роль:','plan.summary.none':'не указано','plan.summary.unknown':'неизвестно',
+    'plan.immediate.title':'🚨 Первые 60 минут — Немедленные действия','plan.contain.title':'🛡 Первые 24 часа — Локализация',
+    'plan.recovery.title':'🔧 Дни 1–7 — Восстановление','plan.notify.title':'📣 Уведомления и коммуникации',
+    'plan.longterm.title':'🌱 После инцидента — Укрепление','plan.trySuggestions':'🛠 Другие рекомендации →',
+    'plan.dont.title':'Чего НЕ стоит делать','plan.help.title':'📞 Получить помощь эксперта','plan.log.title':'🗒 Журнал инцидента — скопируйте этот шаблон',
+    'log.date':'Дата открытия','log.lead':'Ответственный за инцидент','log.severity':'Серьёзность','log.timeline':'Хронология',
+    'log.detected':'Обнаружено','log.isolated':'Устройства изолированы','log.passwords':'Пароли сменены',
+    'log.leadership':'Руководство уведомлено','log.external':'Внешняя помощь вызвана','log.recovery':'Начато восстановление','log.closed':'Инцидент закрыт',
+    'log.accounts':'Затронутые аккаунты/устройства','log.evidence':'Сохранённые доказательства (скриншоты, файлы, письма)',
+    'log.decisions':'Принятые решения и кем','log.lessons':'Извлечённые уроки',
+    'role.leadership':'Вы — центр принятия решений. Утверждайте расходы на экстренную помощь, визируйте внешние сообщения и защищайте команду реагирования от обвинений.',
+    'role.it':'Вы — технический руководитель. Сначала сохраняйте доказательства, затем локализуйте, затем восстанавливайте. Документируйте каждую команду, которую выполняете.',
+    'role.staff':'Передайте пострадавшее устройство ответственному за ИТ или эскалируйте руководству. Не чините сами — но обязательно запишите всё, что помните.',
+    'role.volunteer':'Поддерживайте руководителя логистикой: чистые устройства, еда, списки контактов, заметки. Не заходите в скомпрометированные аккаунты.',
+    'im.1':'Сохраняйте спокойствие. Перейдите в тихое место и используйте чистое устройство (личный телефон, НЕ связанный с инцидентом) для координации.',
+    'im.2':'Отключите затронутые устройства от интернета (Wi-Fi выкл., Ethernet отсоединить, включить авиарежим). НЕ выключайте — оставьте включёнными для криминалистики.',
+    'im.3':'Отключите офисный роутер от интернета, но оставьте включённым. Запишите любые незнакомые устройства в сети.',
+    'im.4':'Пока не платите выкуп. Сфотографируйте записку с выкупом и расширения файлов. Свяжитесь с Access Now или местным CERT.',
+    'im.5':'С ЧИСТОГО устройства смените пароли у самых критичных аккаунтов (сначала почта, затем банк, затем соцсети/облако). Используйте менеджер паролей и уникальные пароли.',
+    'im.6':'Включите на восстановленных аккаунтах аппаратный ключ или приложение для 2FA. По возможности избегайте 2FA по SMS.',
+    'im.7':'Выясните, по чему вы кликнули, когда и с какого устройства/аккаунта. Сохраните оригинал фишингового письма (не удалять).',
+    'im.8':"Если данные чувствительные, используйте 'Найти устройство'/MDM, чтобы удалённо заблокировать или стереть потерянное/украденное устройство.",
+    'im.9':'Назначьте ОДНОГО ответственного за инцидент, кто принимает решения и ведёт записи. Избегайте массового обсуждения в скомпрометированных каналах.',
+    'con.1':'Инвентаризация: перечислите каждый аккаунт, устройство и сервис, к которым имеет доступ затронутый пользователь/команда. Отметьте, где есть общие пароли или сессии.',
+    'con.2':"Завершите все сессии на каждом затронутом аккаунте ('выйти со всех устройств' / 'отозвать активные сессии').",
+    'con.3':'Смените API-токены, пароли приложений, разрешения OAuth и общие административные учётные данные.',
+    'con.email':'Проверьте правила пересылки почты, фильтры и адреса восстановления на предмет подделки. Атакующие часто добавляют скрытые автопересылки.',
+    'con.cloud':'Проверьте ссылки для общего доступа и внешних соавторов в облаке. Отзовите любой неизвестный доступ. Проверьте корзину на массово удалённые файлы.',
+    'con.server':'Переведите сайт офлайн или в режим обслуживания. Сделайте снимки дисков до любой чистки. Проверьте на новых админов и веб-шеллы.',
+    'con.social':'Используйте восстановление аккаунта на конкретной платформе (Meta Business Help, форма скомпрометированного аккаунта X, Google Security Checkup).',
+    'con.surveil':'Предполагайте мобильный шпионский софт: прекратите использовать устройство для чувствительных коммуникаций. Переходите на Signal с чистого телефона. Свяжитесь с Access Now до сброса к заводским — они помогут сохранить доказательства.',
+    'con.ransom':'Изолируйте резервные копии, чтобы ransomware до них не добрался. До любых попыток восстановления убедитесь, что есть офлайн / неизменяемые копии.',
+    'con.log':'Начните письменный журнал инцидента: время, наблюдение, принятое действие, кто его выполнил. Это ваш доказательный след.',
+    'rec.laptop':"Сотрите и переустановите затронутые ноутбуки/ПК с доверенных носителей. Не 'чистите' их только антивирусом — скомпрометированной ОС нельзя доверять полностью.",
+    'rec.phone':'Сбросьте телефоны до заводских ПОСЛЕ того, как сохранены доказательства. Переустанавливайте только необходимые приложения из официальных магазинов.',
+    'rec.backup':'Восстановите данные из резервной копии, сделанной ДО предполагаемого проникновения. Перед открытием просканируйте восстановленные файлы.',
+    'rec.reenrol':'Перезарегистрируйте устройства в MDM, перевыпустите сертификаты и смените общие SSH или VPN-ключи.',
+    'rec.server':'Устраните корневую уязвимость (CMS, плагин, ОС, открытая админ-панель) до возврата сервера в онлайн. Добавьте WAF и ограничение скорости.',
+    'rec.network':'Сбросьте пароль администратора роутера, обновите прошивку, смените SSID Wi-Fi и пароль WPA2/WPA3, отключите WPS и удалённое администрирование.',
+    'rec.allclear':"Проведите финальную проверку 'всё чисто': просмотрите последние входы, приложения OAuth, фильтры почты, расширения браузера, запланированные задачи, автозагрузку.",
+    'not.who.beneficiary':'благополучателей','not.who.donor':'доноров','not.who.staff':'сотрудников','not.who.reports':'источники',
+    'not.affected':'Уведомите затронутых {1} — по самому безопасному каналу, ясно объясните, что раскрыто и что им делать.',
+    'not.board':'Письменно проинформируйте совет / руководство в течение 24 часов. Вместе решите, что сообщать публично.',
+    'not.legal':'Проверьте, требует ли ваша страна (и страны пострадавших) уведомление регулятора по защите данных (напр. GDPR — в течение 72 часов).',
+    'not.crim':'Если совершено преступление, подумайте о заявлении в полицию / национальный CERT — но только если это не подвергнет опасности команду или источники.',
+    'not.msg':'Согласуйте одно единое сообщение вовне. Избегайте спекуляций; делитесь фактами и шагами по устранению.',
+    'lt.1':'В течение 2 недель проведите беспристрастный разбор инцидента. Задокументируйте корневую причину, пробелы и изменения.',
+    'lt.2':'Разверните менеджер паролей и устойчивый к фишингу 2FA (аппаратные ключи YubiKey или passkeys) для всей команды.',
+    'lt.3':'Применяйте принцип минимальных прав: пересмотрите, кому действительно нужен админ-доступ к почте, облаку, соцсетям и финансам.',
+    'lt.4':'Настройте автоматические, зашифрованные офсайт-бэкапы с минимум одной офлайн-копией. Тестируйте восстановление ежеквартально.',
+    'lt.5':'Проводите ежегодные фишинг-учения и 30-минутный курс повышения цифровой безопасности для всего персонала и волонтёров.',
+    'lt.state':"Примите 'высокорисковую' позицию: Signal для чувствительных коммуникаций, разделение рабочих и личных устройств, Lockdown Mode (iOS) / Advanced Protection (Google), инструктаж сотрудников по гигиене в поездках.",
+    'lt.plan':'Напишите одностраничный план реагирования и закрепите его там, где команда сможет его найти (не только на скомпрометированных системах).',
+    'dnt.1':'Не выключайте компьютеры, если подозреваете шпионское ПО — данные в оперативной памяти будут потеряны.',
+    'dnt.2':'Не меняйте пароли с устройства, которое подозреваете в компрометации.',
+    'dnt.3':'Не удаляйте фишинговое письмо, записку о выкупе или подозрительные файлы. Это доказательства.',
+    'dnt.4':'Не платите выкуп без экспертного совета. Оплата не гарантирует восстановления и может финансировать новые атаки.',
+    'dnt.5':'Не обвиняйте публично без доказательств — это может подорвать вашу репутацию и дело.',
+    'dnt.6':'Не используйте скомпрометированные пароли на других аккаунтах.'
   }
+};
+
+let currentLang = 'en';
+try {
+  const saved = localStorage.getItem('cs-lang');
+  if (saved && LANGS.includes(saved)) currentLang = saved;
+} catch(e) {}
+
+function t(key){
+  const dict = I18N[currentLang] || I18N.en;
+  let s = dict[key];
+  if (s === undefined) s = I18N.en[key];
+  if (s === undefined) s = key;
+  for (let i = 1; i < arguments.length; i++) {
+    s = s.replace(new RegExp('\\{'+i+'\\}','g'), arguments[i]);
+  }
+  return s;
+}
+
+/* ---------- Question definitions (language-neutral) ---------- */
+const QUESTIONS = [
+  { id:'role',    type:'single', options:['leadership','it','staff','volunteer'] },
+  { id:'signs',   type:'multi',  options:['phishing','ransom','account','malware','surveil','social','insider','unknown'] },
+  { id:'devices', type:'multi',  options:['laptop','phone','email','cloud','social','server','network'] },
+  { id:'data',    type:'multi',  options:['beneficiary','donor','staff','comms','reports','none'] },
+  { id:'actor',   type:'single', options:['opportunistic','hacktivist','corporate','state','unknown'] },
+  { id:'when',    type:'single', options:['now','today','week','older'] },
+  { id:'context', type:'text' }
 ];
 
 /* ---------- State ---------- */
-const state = {step:0,answers:{}};
+const state = {step:0,answers:{},incidentId:null};
 const wizardEl = document.getElementById("wizard");
 const planEl = document.getElementById("plan");
 const qcardEl = document.getElementById("qcard");
 const progressEl = document.getElementById("progress");
+
+/* ---------- Translation application ---------- */
+function applyTranslations(){
+  document.documentElement.setAttribute("lang", currentLang);
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    const val = t(key);
+    if (el.hasAttribute("data-i18n-html")) el.innerHTML = val;
+    else el.textContent = val;
+  });
+  // Language switcher aria-pressed
+  document.querySelectorAll(".lang-switch button[data-lang]").forEach(b=>{
+    b.setAttribute("aria-pressed", b.getAttribute("data-lang")===currentLang ? "true" : "false");
+  });
+  // If wizard active, re-render; if plan active, rebuild plan content
+  if (wizardEl.classList.contains("active")) render();
+  if (planEl.classList.contains("active")) {
+    document.getElementById("planContent").innerHTML = buildPlan(state.answers);
+  }
+}
+
+function setLang(lang){
+  if (!LANGS.includes(lang)) return;
+  currentLang = lang;
+  try { localStorage.setItem('cs-lang', lang); } catch(e) {}
+  applyTranslations();
+}
+
+document.querySelectorAll(".lang-switch button[data-lang]").forEach(b=>{
+  b.addEventListener("click",()=>setLang(b.getAttribute("data-lang")));
+});
 
 document.getElementById("startBtn").addEventListener("click",()=>{
   wizardEl.classList.add("active");
@@ -400,29 +778,34 @@ function render(){
   }
   const num=document.createElement("div");
   num.className="step-num";
-  num.textContent=`Step ${state.step+1} of ${QUESTIONS.length}`;
+  num.textContent=t('wiz.step', state.step+1, QUESTIONS.length);
   progressEl.appendChild(num);
 
   const q=QUESTIONS[state.step];
-  let html=`<h2>${q.title}</h2><p class="sub">${q.sub}</p>`;
+  const title = t('q.'+q.id+'.title');
+  const sub   = t('q.'+q.id+'.sub');
+  let html=`<h2>${escapeHtml(title)}</h2><p class="sub">${escapeHtml(sub)}</p>`;
   if(q.type==="text"){
     const v=state.answers[q.id]||"";
-    html+=`<textarea id="ans" placeholder="Type a few sentences (optional)…">${v.replace(/</g,"&lt;")}</textarea>`;
+    html+=`<textarea id="ans" placeholder="${escapeAttr(t('wiz.text.ph'))}">${escapeHtml(v)}</textarea>`;
   }else{
     html+=`<div class="options">`;
     const sel=state.answers[q.id]|| (q.type==="multi"?[]:"");
-    q.options.forEach(o=>{
-      const checked=q.type==="multi"?sel.includes(o.v):sel===o.v;
+    q.options.forEach(v=>{
+      const checked = q.type==="multi" ? sel.includes(v) : sel===v;
+      const lbl  = t('opt.'+q.id+'.'+v+'.label');
+      const desc = t('opt.'+q.id+'.'+v+'.desc');
       html+=`<label class="opt ${checked?"selected":""}">
-        <input type="${q.type==="multi"?"checkbox":"radio"}" name="ans" value="${o.v}" ${checked?"checked":""}/>
-        <div><div class="label">${o.label}</div><div class="desc">${o.desc}</div></div>
+        <input type="${q.type==="multi"?"checkbox":"radio"}" name="ans" value="${escapeAttr(v)}" ${checked?"checked":""}/>
+        <div><div class="label">${escapeHtml(lbl)}</div><div class="desc">${escapeHtml(desc)}</div></div>
       </label>`;
     });
     html+=`</div>`;
   }
+  const nextLabel = state.step===QUESTIONS.length-1 ? t('wiz.generate') : t('wiz.next');
   html+=`<div class="row">
-    <button class="btn btn-ghost" id="backBtn" ${state.step===0?"disabled":""}>← Back</button>
-    <button class="btn btn-primary" id="nextBtn" disabled>${state.step===QUESTIONS.length-1?"Generate action plan →":"Next →"}</button>
+    <button class="btn btn-ghost" id="backBtn" ${state.step===0?"disabled":""}>${escapeHtml(t('wiz.back'))}</button>
+    <button class="btn btn-primary" id="nextBtn" disabled>${escapeHtml(nextLabel)}</button>
   </div>
   <div class="help" id="validationHint" style="text-align:right;min-height:18px"></div>`;
   qcardEl.innerHTML=html;
@@ -432,10 +815,9 @@ function render(){
   function refreshValidity(){
     const ok=hasValidAnswer();
     nextBtn.disabled=!ok;
-    hint.textContent=ok?"":(q.type==="multi"?"Select at least one option to continue.":"Choose an option to continue.");
+    hint.textContent = ok ? "" : (q.type==="multi" ? t('wiz.validate.multi') : q.type==="single" ? t('wiz.validate.single') : "");
   }
 
-  // hook events — let the <label> handle the toggle natively, we just react
   function syncOptStyles(){
     qcardEl.querySelectorAll(".opt").forEach(o=>{
       const i=o.querySelector("input");
@@ -466,7 +848,7 @@ function render(){
 
 function hasValidAnswer(){
   const q=QUESTIONS[state.step];
-  if(q.type==="text") return true; // optional free-text question
+  if(q.type==="text") return true;
   if(q.type==="multi"){
     const checked=qcardEl.querySelectorAll("input:checked");
     return checked.length>0;
@@ -477,7 +859,8 @@ function hasValidAnswer(){
 function saveCurrent(){
   const q=QUESTIONS[state.step];
   if(q.type==="text"){
-    state.answers[q.id]=document.getElementById("ans").value.trim();
+    const el=document.getElementById("ans");
+    state.answers[q.id] = el ? el.value.trim() : "";
   }else if(q.type==="multi"){
     const vals=[...qcardEl.querySelectorAll("input:checked")].map(i=>i.value);
     state.answers[q.id]=vals;
@@ -491,11 +874,13 @@ function saveCurrent(){
 function showPlan(){
   wizardEl.classList.remove("active");
   planEl.classList.add("active");
+  // Freeze a stable incident id for this run so language changes don't regenerate it
+  state.incidentId = "NGO-"+Date.now().toString().slice(-6);
   document.getElementById("planContent").innerHTML=buildPlan(state.answers);
   planEl.scrollIntoView({behavior:"smooth",block:"start"});
   document.getElementById("copyBtn").onclick=()=>{
     const text=document.getElementById("planContent").innerText;
-    navigator.clipboard.writeText(text).then(()=>{alert("Action plan copied to clipboard.");});
+    navigator.clipboard.writeText(text).then(()=>{alert(t('plan.copied'));});
   };
 }
 
@@ -518,164 +903,140 @@ function buildPlan(a){
   if(a.when==="now") score+=2;
   if(a.when==="today") score+=1;
 
-  let sev="Low",sevClass="sev-low";
-  if(score>=6 && score<10){sev="Medium";sevClass="sev-med";}
-  else if(score>=10){sev="High";sevClass="sev-high";}
+  let sevKey="plan.sev.low", sevClass="sev-low";
+  if(score>=6 && score<10){sevKey="plan.sev.med";sevClass="sev-med";}
+  else if(score>=10){sevKey="plan.sev.high";sevClass="sev-high";}
+  const sev = t(sevKey);
 
-  const date=new Date().toLocaleString();
-  const signSet=new Set(a.signs||[]);
-  const devSet=new Set(a.devices||[]);
-  const dataSet=new Set(a.data||[]);
+  const date = new Date().toLocaleString();
+  const signSet = new Set(a.signs||[]);
+  const devSet  = new Set(a.devices||[]);
+  const dataSet = new Set(a.data||[]);
 
   // Immediate (first 60 min)
   const immediate=[];
-  immediate.push("Stay calm. Move to a quiet space and use a clean device (a personal phone NOT involved in the incident) to coordinate.");
-  if(devSet.has("laptop")||devSet.has("phone")||signSet.has("malware")||signSet.has("surveil")){
-    immediate.push("Disconnect affected devices from the internet (turn off Wi-Fi, unplug Ethernet, enable airplane mode). Do NOT power them off — keep them on for forensics.");
-  }
-  if(devSet.has("network")){
-    immediate.push("Unplug the office router from the internet but keep it powered. Note any unfamiliar devices on the network.");
-  }
-  if(signSet.has("ransom")){
-    immediate.push("Do NOT pay the ransom yet. Photograph the ransom note and any file extensions. Contact Access Now or your local CERT.");
-  }
+  immediate.push(t('im.1'));
+  if(devSet.has("laptop")||devSet.has("phone")||signSet.has("malware")||signSet.has("surveil")) immediate.push(t('im.2'));
+  if(devSet.has("network")) immediate.push(t('im.3'));
+  if(signSet.has("ransom")) immediate.push(t('im.4'));
   if(signSet.has("account")||signSet.has("social")){
-    immediate.push("From a CLEAN device, change passwords for the most critical accounts (email first, then banking, then social/cloud). Use a password manager and unique passwords.");
-    immediate.push("Enable hardware-key or app-based 2FA on the recovered accounts. Avoid SMS-based 2FA where possible.");
+    immediate.push(t('im.5'));
+    immediate.push(t('im.6'));
   }
-  if(signSet.has("phishing")){
-    immediate.push("Identify what you clicked, when, and from which device/account. Save the original phishing email (do not delete).");
-  }
-  if(signSet.has("insider")){
-    immediate.push("Use 'Find My Device' / MDM to lock or wipe the lost/stolen device remotely if data is sensitive.");
-  }
-  immediate.push("Designate ONE incident lead to make decisions and take notes. Avoid mass discussion in compromised channels.");
+  if(signSet.has("phishing")) immediate.push(t('im.7'));
+  if(signSet.has("insider")) immediate.push(t('im.8'));
+  immediate.push(t('im.9'));
 
   // Containment (first 24h)
   const contain=[];
-  contain.push("Inventory: list every account, device, and service the affected user/team has access to. Mark which ones share passwords or sessions.");
-  contain.push("Sign out all sessions from each affected account ('log out everywhere' / 'revoke active sessions').");
-  contain.push("Rotate API tokens, app passwords, OAuth grants, and shared admin credentials.");
-  if(devSet.has("email")) contain.push("Check email forwarding rules, filters, and recovery addresses for tampering. Attackers often add hidden auto-forwards.");
-  if(devSet.has("cloud")) contain.push("Review cloud share links and external collaborators. Revoke any sharing you don't recognise. Check trash for mass-deleted files.");
-  if(devSet.has("server")) contain.push("Take the website offline or behind maintenance mode. Snapshot disks before any cleanup. Check for new admin users and webshells.");
-  if(devSet.has("social")) contain.push("Use platform-specific account recovery (Meta Business help, X compromised account form, Google security checkup).");
-  if(signSet.has("surveil")){
-    contain.push("Assume mobile spyware: stop using the device for sensitive comms. Switch to Signal on a clean phone. Reach the Access Now helpline before factory-resetting — they can help preserve evidence.");
-  }
-  if(signSet.has("ransom")){
-    contain.push("Isolate backups so ransomware cannot reach them. Verify offline / immutable backups exist before any recovery attempt.");
-  }
-  contain.push("Start a written incident log: timestamp, observation, action taken, who did it. This becomes your evidence trail.");
+  contain.push(t('con.1'));
+  contain.push(t('con.2'));
+  contain.push(t('con.3'));
+  if(devSet.has("email"))  contain.push(t('con.email'));
+  if(devSet.has("cloud"))  contain.push(t('con.cloud'));
+  if(devSet.has("server")) contain.push(t('con.server'));
+  if(devSet.has("social")) contain.push(t('con.social'));
+  if(signSet.has("surveil")) contain.push(t('con.surveil'));
+  if(signSet.has("ransom"))  contain.push(t('con.ransom'));
+  contain.push(t('con.log'));
 
   // Recovery (1-7 days)
   const recovery=[];
-  if(devSet.has("laptop")){
-    recovery.push("Wipe and re-install affected laptops/desktops from trusted media. Don't 'clean' them with antivirus alone — you cannot fully trust a compromised OS.");
-  }
-  if(devSet.has("phone")){
-    recovery.push("Factory-reset phones AFTER evidence is preserved. Re-install only essential apps from official stores.");
-  }
-  recovery.push("Restore data from a backup made BEFORE the suspected intrusion date. Scan restored files before opening.");
-  recovery.push("Re-enrol devices in MDM, re-issue certificates, and rotate any shared SSH or VPN keys.");
-  if(devSet.has("server")) recovery.push("Patch the underlying vulnerability (CMS, plugin, OS, exposed admin panel) before bringing the server back online. Add a WAF and rate-limiting.");
-  if(devSet.has("network")) recovery.push("Reset router admin password, update firmware, change Wi-Fi SSID & WPA2/WPA3 password, disable WPS and remote admin.");
-  recovery.push("Run a final 'all clear' check: review recent logins, OAuth apps, mail filters, browser extensions, scheduled tasks, startup items.");
+  if(devSet.has("laptop")) recovery.push(t('rec.laptop'));
+  if(devSet.has("phone"))  recovery.push(t('rec.phone'));
+  recovery.push(t('rec.backup'));
+  recovery.push(t('rec.reenrol'));
+  if(devSet.has("server"))  recovery.push(t('rec.server'));
+  if(devSet.has("network")) recovery.push(t('rec.network'));
+  recovery.push(t('rec.allclear'));
 
   // Notification
   const notify=[];
   if(sensitive.length){
-    notify.push(`Notify affected ${sensitive.includes("beneficiary")?"beneficiaries, ":""}${sensitive.includes("donor")?"donors, ":""}${sensitive.includes("staff")?"staff, ":""}${sensitive.includes("reports")?"sources, ":""}— in the safest channel available, with clear language about what was exposed and what they should do.`);
+    const who = sensitive
+      .filter(k => ['beneficiary','donor','staff','reports'].includes(k))
+      .map(k => t('not.who.'+k))
+      .join(", ");
+    notify.push(t('not.affected', who));
   }
-  notify.push("Inform your board / leadership in writing within 24 hours. Decide together on public communication.");
-  if(dataSet.has("donor")||dataSet.has("staff")||dataSet.has("beneficiary")){
-    notify.push("Check whether your country (and the countries of affected people) require breach notification to a data-protection authority (e.g. GDPR — within 72 hours).");
-  }
-  notify.push("If criminal activity occurred, consider filing a report with police / national CERT — but only if doing so won't endanger your team or sources.");
-  notify.push("Coordinate one consistent message externally. Avoid speculation; share facts and remediation steps.");
+  notify.push(t('not.board'));
+  if(dataSet.has("donor")||dataSet.has("staff")||dataSet.has("beneficiary")) notify.push(t('not.legal'));
+  notify.push(t('not.crim'));
+  notify.push(t('not.msg'));
 
   // Long term
   const longterm=[];
-  longterm.push("Conduct a blameless post-incident review within 2 weeks. Document root cause, gaps, and changes.");
-  longterm.push("Roll out a password manager and phishing-resistant 2FA (hardware keys like YubiKey, or passkeys) for the whole team.");
-  longterm.push("Apply the principle of least privilege: review who really needs admin access to email, cloud, social, and finance tools.");
-  longterm.push("Set up automated, encrypted, off-site backups with at least one offline copy. Test restoration quarterly.");
-  longterm.push("Run an annual phishing drill and a 30-minute digital-security refresher with all staff and volunteers.");
-  if(a.actor==="state"){
-    longterm.push("Adopt a 'high-risk' posture: Signal-only for sensitive comms, separate work and personal devices, use Lockdown Mode (iOS) / Advanced Protection (Google), brief staff on travel hygiene.");
-  }
-  longterm.push("Write a 1-page Incident Response Plan and pin it where the team can find it (not only on the compromised systems).");
+  longterm.push(t('lt.1'));
+  longterm.push(t('lt.2'));
+  longterm.push(t('lt.3'));
+  longterm.push(t('lt.4'));
+  longterm.push(t('lt.5'));
+  if(a.actor==="state") longterm.push(t('lt.state'));
+  longterm.push(t('lt.plan'));
 
   // What NOT to do
-  const dont=[
-    "Don't power off computers if you suspect spyware — RAM evidence will be lost.",
-    "Don't change passwords from the device you suspect is compromised.",
-    "Don't delete the phishing email, ransom note, or suspicious files. They are evidence.",
-    "Don't pay a ransom without expert advice. Payment doesn't guarantee recovery and can fund further attacks.",
-    "Don't publicly accuse anyone before you have evidence — it can damage your credibility and your case.",
-    "Don't reuse compromised passwords on any other account."
-  ];
+  const dont = [t('dnt.1'),t('dnt.2'),t('dnt.3'),t('dnt.4'),t('dnt.5'),t('dnt.6')];
 
-  // Roles
-  const roleNote = {
-    leadership:"You are the decision authority. Approve spend for emergency help, sign off on external messaging, and protect the responder team from blame.",
-    it:"You are the technical lead. Preserve evidence first, then contain, then recover. Document every command you run.",
-    staff:"Hand the affected device to the IT focal point or escalate to leadership. Don't self-fix — but DO write down everything you remember.",
-    volunteer:"Support the lead by handling logistics: clean devices, food, contact lists, note-taking. Don't access compromised accounts."
-  }[a.role||"staff"];
+  // Role note
+  const roleKey = 'role.' + (a.role || 'staff');
+  const roleNote = t(roleKey);
 
-  // Render
+  const none = `<em>${escapeHtml(t('plan.summary.none'))}</em>`;
+  const unknown = `<em>${escapeHtml(t('plan.summary.unknown'))}</em>`;
+
+  const incidentId = state.incidentId || ("NGO-"+Date.now().toString().slice(-6));
+
   return `
-    <h1>Your Action Plan <span class="severity ${sevClass}">Severity: ${sev}</span></h1>
-    <div class="meta">Generated ${date} for an NGO incident response. Score: ${score}.</div>
+    <h1>${escapeHtml(t('plan.title'))} <span class="severity ${sevClass}">${escapeHtml(t('plan.severity'))} ${escapeHtml(sev)}</span></h1>
+    <div class="meta">${escapeHtml(t('plan.meta', date, score))}</div>
 
     <div class="card section">
-      <h3><span class="dot"></span>Situation summary</h3>
-      <p><strong>Reported signs:</strong> ${(a.signs||[]).map(s=>`<span class="badge">${labelOf("signs",s)}</span>`).join("")||"<em>none specified</em>"}</p>
-      <p><strong>Affected systems:</strong> ${(a.devices||[]).map(s=>`<span class="badge">${labelOf("devices",s)}</span>`).join("")||"<em>none specified</em>"}</p>
-      <p><strong>Sensitive data involved:</strong> ${(a.data||[]).map(s=>`<span class="badge">${labelOf("data",s)}</span>`).join("")||"<em>none specified</em>"}</p>
-      <p><strong>Suspected actor:</strong> ${labelOf("actor",a.actor)||"<em>unknown</em>"}</p>
-      <p><strong>First noticed:</strong> ${labelOf("when",a.when)||"<em>unknown</em>"}</p>
-      ${a.context?`<p><strong>Context:</strong> ${escapeHtml(a.context)}</p>`:""}
-      <p style="margin-top:14px"><strong>Your role:</strong> ${roleNote}</p>
+      <h3><span class="dot"></span>${escapeHtml(t('plan.summary.title'))}</h3>
+      <p><strong>${escapeHtml(t('plan.summary.signs'))}</strong> ${(a.signs||[]).map(s=>`<span class="badge">${escapeHtml(labelOf("signs",s))}</span>`).join("")||none}</p>
+      <p><strong>${escapeHtml(t('plan.summary.devices'))}</strong> ${(a.devices||[]).map(s=>`<span class="badge">${escapeHtml(labelOf("devices",s))}</span>`).join("")||none}</p>
+      <p><strong>${escapeHtml(t('plan.summary.data'))}</strong> ${(a.data||[]).map(s=>`<span class="badge">${escapeHtml(labelOf("data",s))}</span>`).join("")||none}</p>
+      <p><strong>${escapeHtml(t('plan.summary.actor'))}</strong> ${a.actor?escapeHtml(labelOf("actor",a.actor)):unknown}</p>
+      <p><strong>${escapeHtml(t('plan.summary.when'))}</strong> ${a.when?escapeHtml(labelOf("when",a.when)):unknown}</p>
+      ${a.context?`<p><strong>${escapeHtml(t('plan.summary.context'))}</strong> ${escapeHtml(a.context)}</p>`:""}
+      <p style="margin-top:14px"><strong>${escapeHtml(t('plan.summary.role'))}</strong> ${escapeHtml(roleNote)}</p>
     </div>
 
     <div class="card section">
-      <h3><span class="dot"></span>🚨 First 60 minutes — Immediate actions</h3>
-      <ul class="checklist">${immediate.map(x=>`<li>${x}</li>`).join("")}</ul>
+      <h3><span class="dot"></span>${escapeHtml(t('plan.immediate.title'))}</h3>
+      <ul class="checklist">${immediate.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
     </div>
 
     <div class="card section">
-      <h3><span class="dot"></span>🛡 First 24 hours — Containment</h3>
-      <ul class="checklist">${contain.map(x=>`<li>${x}</li>`).join("")}</ul>
+      <h3><span class="dot"></span>${escapeHtml(t('plan.contain.title'))}</h3>
+      <ul class="checklist">${contain.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
     </div>
 
     <div class="grid2">
       <div class="card section">
-        <h3><span class="dot"></span>🔧 Days 1–7 — Recovery</h3>
-        <ul class="checklist">${recovery.map(x=>`<li>${x}</li>`).join("")}</ul>
+        <h3><span class="dot"></span>${escapeHtml(t('plan.recovery.title'))}</h3>
+        <ul class="checklist">${recovery.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
       </div>
       <div class="card section">
-        <h3><span class="dot"></span>📣 Notification & communications</h3>
-        <ul class="checklist">${notify.map(x=>`<li>${x}</li>`).join("")}</ul>
+        <h3><span class="dot"></span>${escapeHtml(t('plan.notify.title'))}</h3>
+        <ul class="checklist">${notify.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
       </div>
     </div>
 
     <div class="card section">
       <h3 style="justify-content:space-between;flex-wrap:wrap;row-gap:8px">
-        <span style="display:inline-flex;align-items:center;gap:10px"><span class="dot"></span>🌱 Beyond the incident — Hardening</span>
-        <a href="windows-tool.html" class="btn btn-good" style="font-size:13px;padding:8px 14px;text-decoration:none">🛠 Try other suggestions →</a>
+        <span style="display:inline-flex;align-items:center;gap:10px"><span class="dot"></span>${escapeHtml(t('plan.longterm.title'))}</span>
+        <a href="windows-tool.html" class="btn btn-good" style="font-size:13px;padding:8px 14px;text-decoration:none">${escapeHtml(t('plan.trySuggestions'))}</a>
       </h3>
-      <ul class="checklist">${longterm.map(x=>`<li>${x}</li>`).join("")}</ul>
+      <ul class="checklist">${longterm.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
     </div>
 
     <div class="card section" style="border-color:rgba(239,68,68,.4)">
-      <h3 style="color:#fecaca"><span class="dot" style="background:#ef4444"></span>What NOT to do</h3>
-      <ul class="checklist">${dont.map(x=>`<li>${x}</li>`).join("")}</ul>
+      <h3 style="color:#fecaca"><span class="dot" style="background:#ef4444"></span>${escapeHtml(t('plan.dont.title'))}</h3>
+      <ul class="checklist">${dont.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
     </div>
 
     <div class="card section">
-      <h3><span class="dot"></span>📞 Get expert help (recommended for ${sev.toLowerCase()} severity)</h3>
+      <h3><span class="dot"></span>${escapeHtml(t('plan.help.title'))}</h3>
       <div class="resources">
         <a href="mailto:help@accessnow.org">Access Now Digital Security Helpline — help@accessnow.org (24/7, free, multiple languages)</a>
         <a href="https://www.frontlinedefenders.org/en/emergency-contact" target="_blank" rel="noopener">Front Line Defenders — emergency support for human rights defenders</a>
@@ -685,32 +1046,32 @@ function buildPlan(a){
     </div>
 
     <div class="card section">
-      <h3><span class="dot"></span>🗒 Incident log — copy this template</h3>
+      <h3><span class="dot"></span>${escapeHtml(t('plan.log.title'))}</h3>
       <pre style="white-space:pre-wrap;background:#0e1430;border:1px solid var(--border);padding:14px;border-radius:10px;color:#cfd6ff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px">
-INCIDENT ID: NGO-${Date.now().toString().slice(-6)}
-Date opened: ${date}
-Incident lead: __________
-Severity: ${sev}
+INCIDENT ID: ${incidentId}
+${t('log.date')}: ${date}
+${t('log.lead')}: __________
+${t('log.severity')}: ${sev}
 
-Timeline:
-  [HH:MM] Detected: __________
-  [HH:MM] Devices isolated: __________
-  [HH:MM] Passwords rotated: __________
-  [HH:MM] Leadership notified: __________
-  [HH:MM] External help contacted: __________
-  [HH:MM] Recovery started: __________
-  [HH:MM] Incident closed: __________
+${t('log.timeline')}:
+  [HH:MM] ${t('log.detected')}: __________
+  [HH:MM] ${t('log.isolated')}: __________
+  [HH:MM] ${t('log.passwords')}: __________
+  [HH:MM] ${t('log.leadership')}: __________
+  [HH:MM] ${t('log.external')}: __________
+  [HH:MM] ${t('log.recovery')}: __________
+  [HH:MM] ${t('log.closed')}: __________
 
-Affected accounts/devices:
+${t('log.accounts')}:
   - __________
 
-Evidence preserved (screenshots, files, emails):
+${t('log.evidence')}:
   - __________
 
-Decisions made & by whom:
+${t('log.decisions')}:
   - __________
 
-Lessons learned:
+${t('log.lessons')}:
   - __________
       </pre>
     </div>
@@ -718,12 +1079,16 @@ Lessons learned:
 }
 
 function labelOf(qid,v){
-  const q=QUESTIONS.find(x=>x.id===qid);
-  if(!q||!q.options) return v||"";
-  const o=q.options.find(o=>o.v===v);
-  return o?o.label:v;
+  if(!v) return "";
+  const key = 'opt.'+qid+'.'+v+'.label';
+  const out = t(key);
+  return out === key ? v : out;
 }
-function escapeHtml(s){return (s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function escapeHtml(s){return (s==null?"":String(s)).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function escapeAttr(s){return escapeHtml(s);}
+
+/* ---------- Initial translation pass ---------- */
+applyTranslations();
 </script>
 </body>
 </html>

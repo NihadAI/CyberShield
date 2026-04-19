@@ -60,8 +60,30 @@
   header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
   .logo{display:flex;align-items:center;gap:12px;font-weight:700}
   .logo-mark{width:36px;height:36px;border-radius:10px;background:conic-gradient(from 200deg,#7c5cff,#22d3ee,#7c5cff);display:grid;place-items:center;color:#0b1020;font-weight:900;box-shadow:var(--shadow)}
-  nav a{margin-left:18px;color:var(--muted);font-weight:500}
-  nav a:hover{color:var(--text)}
+  nav{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  nav a.nav-link{margin-left:18px;color:var(--muted);font-weight:500}
+  nav a.nav-link:hover{color:var(--text)}
+  .nav-download{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#22c55e,#10b981);color:white !important;padding:9px 14px;border-radius:10px;font-weight:700;font-size:14px;box-shadow:0 6px 16px rgba(34,197,94,.28);transition:box-shadow .2s ease,transform .08s ease;margin-left:14px;white-space:nowrap}
+  .nav-download:hover{box-shadow:0 10px 22px rgba(34,197,94,.45);text-decoration:none}
+  .nav-download:active{transform:translateY(1px)}
+  .lang-switch{display:inline-flex;gap:2px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:3px;margin-left:12px}
+  .lang-switch button{appearance:none;border:0;background:transparent;color:var(--muted);padding:6px 10px;font-size:11px;font-weight:700;letter-spacing:.05em;cursor:pointer;border-radius:7px;font-family:inherit;transition:color .15s ease,background .15s ease}
+  .lang-switch button:hover{color:var(--text)}
+  .lang-switch button[aria-pressed="true"]{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b1020}
+  @media (max-width:980px){.nav-download .nd-full{display:none}.nav-download .nd-short{display:inline}}
+  @media (min-width:981px){.nav-download .nd-short{display:none}}
+  @media (max-width:720px){
+    header{gap:10px;flex-wrap:wrap}
+    nav a.nav-link{margin-left:10px;font-size:13px}
+    .nav-download{padding:8px 10px;font-size:13px;margin-left:8px}
+    .nav-download .nd-short{display:none}
+    .lang-switch{margin-left:8px}
+    .lang-switch button{padding:5px 7px;font-size:10px}
+  }
+  @media (max-width:520px){
+    .nav-download .nd-icon{font-size:16px}
+    nav a.nav-link{margin-left:8px;font-size:12px}
+  }
   .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-weight:600;margin-bottom:14px}
   .back:hover{color:var(--text);text-decoration:none}
   .hero{padding:20px 0 24px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
@@ -122,29 +144,40 @@
       <div class="logo-mark">CS</div>
       <div>
         <div>CyberShield</div>
-        <div style="color:var(--muted);font-size:12px;font-weight:500">NGO Incident Response Toolkit</div>
+        <div style="color:var(--muted);font-size:12px;font-weight:500" data-i18n="app.tagline">NGO Incident Response Toolkit</div>
       </div>
     </div>
-    <nav>
-      <a href="ngo-incident-response.html">Assessment</a>
-      <a href="ngo-incident-response.html#resources">Resources</a>
+    <nav aria-label="Primary navigation">
+      <a class="nav-link" href="ngo-incident-response.html" data-i18n="nav.assessment">Assessment</a>
+      <a class="nav-link" href="ngo-incident-response.html#resources" data-i18n="nav.resources">Resources</a>
+      <a class="nav-download" href="#download" aria-label="Download the Windows tool">
+        <span aria-hidden="true" class="nd-icon">⬇</span>
+        <span class="nd-full" data-i18n="nav.download.full">Download Windows tool</span>
+        <span class="nd-short" data-i18n="nav.download.short">Download</span>
+      </a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">ENG</button>
+        <button type="button" data-lang="az" aria-pressed="false">AZE</button>
+        <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
     </nav>
   </header>
 
-  <a class="back" href="ngo-incident-response.html">← Back to action plan</a>
+  <a class="back" href="ngo-incident-response.html" data-i18n="back">← Back to action plan</a>
 
   <section class="hero">
     <div>
-      <span class="pill">Recommended add-on for Windows users</span>
-      <h1>CyberShield Hardener <br/>— the Windows helper tool</h1>
-      <p class="lead">A tiny desktop app that runs a curated set of PowerShell hardening commands on your PC — the same ones your IT team would type by hand — in one click. Built for NGOs who don't have a full-time sysadmin.</p>
+      <span class="pill" data-i18n="hero.pill">Recommended add-on for Windows users</span>
+      <h1 data-i18n="hero.h1" data-i18n-html="1">CyberShield Hardener <br/>— the Windows helper tool</h1>
+      <p class="lead" data-i18n="hero.lead">A tiny desktop app that runs a curated set of PowerShell hardening commands on your PC — the same ones your IT team would type by hand — in one click. Built for NGOs who don't have a full-time sysadmin.</p>
       <div class="cta">
-        <a href="#" class="btn btn-good" onclick="event.preventDefault();alert('The Windows installer is coming soon. This download is currently a placeholder.');">⬇ Download for Windows (.exe)</a>
-        <a href="#what-it-does" class="btn btn-ghost">See what it does</a>
+        <a href="tools/Run-CyberShieldHardener-Admin.bat" class="btn btn-good" download data-i18n="hero.bat">⬇ Download launcher (.bat)</a>
+        <a href="tools/CyberShieldHardener.ps1" class="btn btn-ghost" download data-i18n="hero.ps1">⬇ Download script (.ps1)</a>
+        <a href="#what-it-does" class="btn btn-ghost" data-i18n="hero.see">See what it does</a>
       </div>
       <p class="muted" style="font-size:13px;margin-top:14px">
-        <span class="version-badge">v0.1 · Preview</span>
-        &nbsp;Free, open source, requires Windows 10 / 11.
+        <span class="version-badge" data-i18n="hero.version">v0.1 · Preview</span>
+        &nbsp;<span data-i18n="hero.req">Free, open source, requires Windows 10 / 11.</span>
       </p>
     </div>
     <div class="card app-preview">
@@ -167,30 +200,28 @@
   </section>
 
   <div class="warn-banner">
-    <div class="ico">⚠</div>
-    <div>
-      <strong>This is a preview page.</strong> The installer is not yet published — the Download button is a placeholder. Once the app ships, clicking it will deliver a signed <code>CyberShield-Hardener.exe</code> that runs the PowerShell routines below with your confirmation.
-    </div>
+    <div class="ico">✓</div>
+    <div data-i18n="banner" data-i18n-html="1"><strong>The tool is live.</strong> Download the <code>.bat</code> launcher plus the <code>.ps1</code> script (keep them in the same folder), right-click the <code>.bat</code> and choose <em>Run as administrator</em>. Every check is read-only — the tool never modifies your system. A one-click <code>Build-Exe.ps1</code> is also included if you'd prefer to compile a real signed <code>.exe</code>.</div>
   </div>
 
   <section id="what-it-does" class="card section">
-    <h3><span class="dot"></span>What the tool does</h3>
-    <p class="muted" style="margin-top:0">CyberShield Hardener is a small GUI on top of PowerShell. It asks your permission before each action, shows you the exact command it will run, and logs everything it does so your IT person can review it later.</p>
+    <h3><span class="dot"></span><span data-i18n="wit.title">What the tool does</span></h3>
+    <p class="muted" style="margin-top:0" data-i18n="wit.sub">CyberShield Hardener is a small GUI on top of PowerShell. It asks your permission before each action, shows you the exact command it will run, and logs everything it does so your IT person can review it later.</p>
     <div class="features">
-      <div class="feature"><div class="ico">🛡</div><strong>Windows Defender sweep</strong><span>Verifies real-time protection, signature freshness, and launches a quick scan.</span></div>
-      <div class="feature"><div class="ico">🔥</div><strong>Firewall audit</strong><span>Confirms all three firewall profiles are enabled and lists risky inbound rules.</span></div>
-      <div class="feature"><div class="ico">🔑</div><strong>BitLocker check</strong><span>Reports drive encryption status and offers to enable it on the OS volume.</span></div>
-      <div class="feature"><div class="ico">📦</div><strong>Update status</strong><span>Lists pending Windows updates and missing security patches.</span></div>
-      <div class="feature"><div class="ico">👥</div><strong>User account review</strong><span>Shows local admins, enabled guest accounts, and weak password policies.</span></div>
-      <div class="feature"><div class="ico">🧹</div><strong>Startup cleanup</strong><span>Lists unknown startup programs and scheduled tasks for easy review.</span></div>
-      <div class="feature"><div class="ico">🌐</div><strong>DNS & network</strong><span>Flags suspicious DNS settings, proxy overrides, and unknown hosts file entries.</span></div>
-      <div class="feature"><div class="ico">📜</div><strong>Evidence bundle</strong><span>Exports a signed .zip of logs you can send to an incident-response helpline.</span></div>
+      <div class="feature"><div class="ico">🛡</div><strong data-i18n="feat.def.t">Windows Defender sweep</strong><span data-i18n="feat.def.d">Verifies real-time protection, signature freshness, and launches a quick scan.</span></div>
+      <div class="feature"><div class="ico">🔥</div><strong data-i18n="feat.fw.t">Firewall audit</strong><span data-i18n="feat.fw.d">Confirms all three firewall profiles are enabled and lists risky inbound rules.</span></div>
+      <div class="feature"><div class="ico">🔑</div><strong data-i18n="feat.bl.t">BitLocker check</strong><span data-i18n="feat.bl.d">Reports drive encryption status and offers to enable it on the OS volume.</span></div>
+      <div class="feature"><div class="ico">📦</div><strong data-i18n="feat.up.t">Update status</strong><span data-i18n="feat.up.d">Lists pending Windows updates and missing security patches.</span></div>
+      <div class="feature"><div class="ico">👥</div><strong data-i18n="feat.ac.t">User account review</strong><span data-i18n="feat.ac.d">Shows local admins, enabled guest accounts, and weak password policies.</span></div>
+      <div class="feature"><div class="ico">🧹</div><strong data-i18n="feat.st.t">Startup cleanup</strong><span data-i18n="feat.st.d">Lists unknown startup programs and scheduled tasks for easy review.</span></div>
+      <div class="feature"><div class="ico">🌐</div><strong data-i18n="feat.net.t">DNS & network</strong><span data-i18n="feat.net.d">Flags suspicious DNS settings, proxy overrides, and unknown hosts file entries.</span></div>
+      <div class="feature"><div class="ico">📜</div><strong data-i18n="feat.ev.t">Evidence bundle</strong><span data-i18n="feat.ev.d">Exports a signed .zip of logs you can send to an incident-response helpline.</span></div>
     </div>
   </section>
 
   <section class="card section">
-    <h3><span class="dot"></span>Example commands it will run</h3>
-    <p class="muted" style="margin-top:0">Every command requires your click to confirm. Nothing runs silently in the background.</p>
+    <h3><span class="dot"></span><span data-i18n="cmds.title">Example commands it will run</span></h3>
+    <p class="muted" style="margin-top:0" data-i18n="cmds.sub">Every command requires your click to confirm. Nothing runs silently in the background.</p>
     <div class="cmds">
       <div class="cmd"><span class="tag">Defender</span><span>Get-MpComputerStatus | Select-Object AMServiceEnabled, RealTimeProtectionEnabled, AntivirusSignatureLastUpdated</span></div>
       <div class="cmd"><span class="tag">Firewall</span><span>Get-NetFirewallProfile | Select-Object Name, Enabled</span></div>
@@ -204,35 +235,192 @@
   </section>
 
   <section id="download" class="card section">
-    <h3><span class="dot"></span>Download &amp; install</h3>
+    <h3><span class="dot"></span><span data-i18n="dl.title">Download &amp; install</span></h3>
     <div class="steps">
-      <div class="s"><strong>Download the installer.</strong> <span class="muted">A signed <code>.exe</code> (~8 MB) will be published here soon.</span></div>
-      <div class="s"><strong>Verify the signature.</strong> Right-click the file → Properties → Digital Signatures, and confirm it's signed by "CyberShield Project".</div>
-      <div class="s"><strong>Run as administrator.</strong> Most hardening commands need elevated privileges.</div>
-      <div class="s"><strong>Pick the checks you want.</strong> Each one shows the PowerShell it will run and asks for confirmation.</div>
-      <div class="s"><strong>Export the evidence bundle.</strong> Attach it to your CyberShield action plan when asking an expert for help.</div>
+      <div class="s" data-i18n="dl.step1" data-i18n-html="1"><strong>Download the installer.</strong> <span class="muted">A signed <code>.exe</code> (~8 MB) will be published here soon.</span></div>
+      <div class="s" data-i18n="dl.step2" data-i18n-html="1"><strong>Verify the signature.</strong> Right-click the file → Properties → Digital Signatures, and confirm it's signed by "CyberShield Project".</div>
+      <div class="s" data-i18n="dl.step3" data-i18n-html="1"><strong>Run as administrator.</strong> Most hardening commands need elevated privileges.</div>
+      <div class="s" data-i18n="dl.step4" data-i18n-html="1"><strong>Pick the checks you want.</strong> Each one shows the PowerShell it will run and asks for confirmation.</div>
+      <div class="s" data-i18n="dl.step5" data-i18n-html="1"><strong>Export the evidence bundle.</strong> Attach it to your CyberShield action plan when asking an expert for help.</div>
     </div>
     <div class="cta" style="margin-top:16px">
-      <a href="#" class="btn btn-good" onclick="event.preventDefault();alert('The Windows installer is coming soon. This download is currently a placeholder.');">⬇ Download CyberShield-Hardener.exe</a>
-      <a href="ngo-incident-response.html" class="btn btn-ghost">← Return to your action plan</a>
+      <a href="tools/Run-CyberShieldHardener-Admin.bat" class="btn btn-good" download data-i18n="hero.bat">⬇ Download launcher (.bat)</a>
+      <a href="tools/CyberShieldHardener.ps1" class="btn btn-ghost" download data-i18n="hero.ps1">⬇ Download script (.ps1)</a>
+      <a href="tools/Build-Exe.ps1" class="btn btn-ghost" download data-i18n="dl.buildexe">⬇ Build-Exe (.ps1)</a>
+      <a href="tools/README.md" class="btn btn-ghost" data-i18n="dl.instructions">📖 Instructions</a>
+      <a href="ngo-incident-response.html" class="btn btn-ghost" data-i18n="dl.return">← Return to your action plan</a>
     </div>
-    <p class="muted" style="font-size:13px;margin-top:14px">macOS and Linux helpers are on the roadmap. If you'd like to help port the tool, open an issue in the project repository.</p>
+    <p class="muted" style="font-size:13px;margin-top:14px" data-i18n="dl.roadmap">macOS and Linux helpers are on the roadmap. If you'd like to help port the tool, open an issue in the project repository.</p>
   </section>
 
   <section class="card section">
-    <h3><span class="dot"></span>Safety &amp; privacy</h3>
-    <p style="margin:0 0 8px">CyberShield Hardener is designed with NGO threat models in mind:</p>
+    <h3><span class="dot"></span><span data-i18n="safety.title">Safety &amp; privacy</span></h3>
+    <p style="margin:0 0 8px" data-i18n="safety.sub">CyberShield Hardener is designed with NGO threat models in mind:</p>
     <ul style="margin:0;padding-left:18px;color:var(--muted)">
-      <li>Runs entirely on your computer — no data is uploaded anywhere.</li>
-      <li>Open source so anyone (your tech-savvy volunteer, Access Now, a pen tester) can audit the code.</li>
-      <li>Every action is logged locally so changes can be reviewed or reverted.</li>
-      <li>Works offline, which matters if your Wi-Fi is still considered hostile.</li>
+      <li data-i18n="safety.1">Runs entirely on your computer — no data is uploaded anywhere.</li>
+      <li data-i18n="safety.2">Open source so anyone (your tech-savvy volunteer, Access Now, a pen tester) can audit the code.</li>
+      <li data-i18n="safety.3">Every action is logged locally so changes can be reviewed or reverted.</li>
+      <li data-i18n="safety.4">Works offline, which matters if your Wi-Fi is still considered hostile.</li>
     </ul>
   </section>
 
   <footer>
-    <p>CyberShield Hardener does not replace a professional incident response. If your NGO is under active attack, contact <a href="mailto:help@accessnow.org">help@accessnow.org</a> immediately.</p>
+    <p data-i18n="footer" data-i18n-html="1">CyberShield Hardener does not replace a professional incident response. If your NGO is under active attack, contact <a href="mailto:help@accessnow.org">help@accessnow.org</a> immediately.</p>
   </footer>
 </div>
+
+<script>
+const LANGS = ['en','az','ru'];
+const I18N = {
+  en: {
+    'app.tagline':'NGO Incident Response Toolkit',
+    'nav.assessment':'Assessment','nav.resources':'Resources',
+    'nav.download.full':'Download Windows tool','nav.download.short':'Download',
+    'back':'← Back to action plan',
+    'hero.pill':'Recommended add-on for Windows users',
+    'hero.h1':'CyberShield Hardener <br/>— the Windows helper tool',
+    'hero.lead':"A tiny desktop app that runs a curated set of PowerShell hardening commands on your PC — the same ones your IT team would type by hand — in one click. Built for NGOs who don't have a full-time sysadmin.",
+    'hero.bat':'⬇ Download launcher (.bat)','hero.ps1':'⬇ Download script (.ps1)','hero.see':'See what it does',
+    'hero.version':'v0.1 · Preview','hero.req':'Free, open source, requires Windows 10 / 11.',
+    'banner':'<strong>The tool is live.</strong> Download the <code>.bat</code> launcher plus the <code>.ps1</code> script (keep them in the same folder), right-click the <code>.bat</code> and choose <em>Run as administrator</em>. Every check is read-only — the tool never modifies your system. A one-click <code>Build-Exe.ps1</code> is also included if you\'d prefer to compile a real signed <code>.exe</code>.',
+    'wit.title':'What the tool does',
+    'wit.sub':'CyberShield Hardener is a small GUI on top of PowerShell. It asks your permission before each action, shows you the exact command it will run, and logs everything it does so your IT person can review it later.',
+    'feat.def.t':'Windows Defender sweep','feat.def.d':'Verifies real-time protection, signature freshness, and launches a quick scan.',
+    'feat.fw.t':'Firewall audit','feat.fw.d':'Confirms all three firewall profiles are enabled and lists risky inbound rules.',
+    'feat.bl.t':'BitLocker check','feat.bl.d':'Reports drive encryption status and offers to enable it on the OS volume.',
+    'feat.up.t':'Update status','feat.up.d':'Lists pending Windows updates and missing security patches.',
+    'feat.ac.t':'User account review','feat.ac.d':'Shows local admins, enabled guest accounts, and weak password policies.',
+    'feat.st.t':'Startup cleanup','feat.st.d':'Lists unknown startup programs and scheduled tasks for easy review.',
+    'feat.net.t':'DNS & network','feat.net.d':'Flags suspicious DNS settings, proxy overrides, and unknown hosts file entries.',
+    'feat.ev.t':'Evidence bundle','feat.ev.d':'Exports a signed .zip of logs you can send to an incident-response helpline.',
+    'cmds.title':'Example commands it will run','cmds.sub':'Every command requires your click to confirm. Nothing runs silently in the background.',
+    'dl.title':'Download & install',
+    'dl.step1':'<strong>Download the installer.</strong> <span class="muted">A signed <code>.exe</code> (~8 MB) will be published here soon.</span>',
+    'dl.step2':'<strong>Verify the signature.</strong> Right-click the file → Properties → Digital Signatures, and confirm it\'s signed by "CyberShield Project".',
+    'dl.step3':'<strong>Run as administrator.</strong> Most hardening commands need elevated privileges.',
+    'dl.step4':'<strong>Pick the checks you want.</strong> Each one shows the PowerShell it will run and asks for confirmation.',
+    'dl.step5':'<strong>Export the evidence bundle.</strong> Attach it to your CyberShield action plan when asking an expert for help.',
+    'dl.buildexe':'⬇ Build-Exe (.ps1)','dl.instructions':'📖 Instructions','dl.return':'← Return to your action plan',
+    'dl.roadmap':"macOS and Linux helpers are on the roadmap. If you'd like to help port the tool, open an issue in the project repository.",
+    'safety.title':'Safety & privacy','safety.sub':'CyberShield Hardener is designed with NGO threat models in mind:',
+    'safety.1':'Runs entirely on your computer — no data is uploaded anywhere.',
+    'safety.2':'Open source so anyone (your tech-savvy volunteer, Access Now, a pen tester) can audit the code.',
+    'safety.3':'Every action is logged locally so changes can be reviewed or reverted.',
+    'safety.4':'Works offline, which matters if your Wi-Fi is still considered hostile.',
+    'footer':'CyberShield Hardener does not replace a professional incident response. If your NGO is under active attack, contact <a href="mailto:help@accessnow.org">help@accessnow.org</a> immediately.'
+  },
+  az: {
+    'app.tagline':'QHT Hadisə Cavab Dəsti',
+    'nav.assessment':'Qiymətləndirmə','nav.resources':'Resurslar',
+    'nav.download.full':'Windows alətini yüklə','nav.download.short':'Yüklə',
+    'back':'← Fəaliyyət planına qayıt',
+    'hero.pill':'Windows istifadəçiləri üçün tövsiyə olunan əlavə',
+    'hero.h1':'CyberShield Hardener <br/>— Windows köməkçi aləti',
+    'hero.lead':"PC-nizdə bir sıra seçilmiş PowerShell möhkəmləndirmə əmrlərini bir kliklə icra edən kiçik masaüstü tətbiqi — İT komandanızın əllə yazacağı əmrlərlə eyni. Tam ştat sistem administratoru olmayan QHT-lər üçün nəzərdə tutulub.",
+    'hero.bat':'⬇ Launcher-i yüklə (.bat)','hero.ps1':'⬇ Skripti yüklə (.ps1)','hero.see':'Nə etdiyinə bax',
+    'hero.version':'v0.1 · Önbaxış','hero.req':'Pulsuz, açıq mənbəli, Windows 10 / 11 tələb edir.',
+    'banner':'<strong>Alət hazırdır.</strong> <code>.bat</code> launcher-i və <code>.ps1</code> skriptini yükləyin (eyni qovluqda saxlayın), <code>.bat</code> üzərinə sağ klikləyin və <em>Administrator kimi icra et</em> seçin. Hər yoxlama yalnız oxunur — alət sisteminizi heç vaxt dəyişmir. Gerçək imzalı <code>.exe</code> kompilyasiya etməyi üstün tutsanız, bir klikli <code>Build-Exe.ps1</code> da daxildir.',
+    'wit.title':'Alət nə edir',
+    'wit.sub':'CyberShield Hardener PowerShell üzərində qurulmuş kiçik bir GUI-dir. Hər fəaliyyətdən əvvəl icazənizi soruşur, icra edəcəyi dəqiq əmri göstərir və hər şeyi qeydə alır ki, İT məsulunuz sonra nəzərdən keçirə bilsin.',
+    'feat.def.t':'Windows Defender yoxlaması','feat.def.d':'Real vaxt qorumasını, imza təzəliyini yoxlayır və sürətli skan başladır.',
+    'feat.fw.t':'Firewall auditi','feat.fw.d':'Hər üç firewall profilinin aktiv olduğunu təsdiqləyir və riskli daxili qaydaları sadalayır.',
+    'feat.bl.t':'BitLocker yoxlaması','feat.bl.d':'Disk şifrələmə statusunu bildirir və OS tomunda onu aktivləşdirməyi təklif edir.',
+    'feat.up.t':'Yeniləmə statusu','feat.up.d':'Gözləyən Windows yeniləmələrini və çatışmayan təhlükəsizlik yamalarını sadalayır.',
+    'feat.ac.t':'İstifadəçi hesab baxışı','feat.ac.d':'Yerli administratorları, aktiv qonaq hesablarını və zəif parol siyasətlərini göstərir.',
+    'feat.st.t':'Başlanğıc təmizliyi','feat.st.d':'Naməlum başlanğıc proqramlarını və planlı tapşırıqları asan baxış üçün sadalayır.',
+    'feat.net.t':'DNS və şəbəkə','feat.net.d':'Şübhəli DNS parametrlərini, proksi əvəzlərini və naməlum hosts fayl qeydlərini qeyd edir.',
+    'feat.ev.t':'Dəlil paketi','feat.ev.d':'İnsident cavab xəttinə göndərə biləcəyiniz imzalı .zip log paketi ixrac edir.',
+    'cmds.title':'İcra edəcəyi nümunə əmrlər','cmds.sub':'Hər əmr təsdiq üçün kliklənməlidir. Arxa planda heç nə səssizcə icra olunmur.',
+    'dl.title':'Yüklə və quraşdır',
+    'dl.step1':'<strong>Installer-i yüklə.</strong> <span class="muted">İmzalı <code>.exe</code> (~8 MB) tezliklə burada yayımlanacaq.</span>',
+    'dl.step2':'<strong>İmzanı təsdiqlə.</strong> Fayl üzərinə sağ klikləyin → Xüsusiyyətlər → Rəqəmsal İmzalar və "CyberShield Project" tərəfindən imzalandığını təsdiqləyin.',
+    'dl.step3':'<strong>Administrator kimi icra et.</strong> Əksər möhkəmləndirmə əmrləri yüksəldilmiş imtiyazlar tələb edir.',
+    'dl.step4':'<strong>İstədiyiniz yoxlamaları seçin.</strong> Hər biri icra edəcəyi PowerShell-i göstərir və təsdiq tələb edir.',
+    'dl.step5':'<strong>Dəlil paketini ixrac edin.</strong> Ekspertdən kömək istəyəndə onu CyberShield fəaliyyət planınıza əlavə edin.',
+    'dl.buildexe':'⬇ Build-Exe (.ps1)','dl.instructions':'📖 Təlimatlar','dl.return':'← Fəaliyyət planına qayıt',
+    'dl.roadmap':'macOS və Linux köməkçiləri yol xəritəsindədir. Aləti port etməyə kömək etmək istəsəniz, layihə repositoriyasında issue açın.',
+    'safety.title':'Təhlükəsizlik və məxfilik','safety.sub':'CyberShield Hardener QHT təhdid modelləri nəzərə alınaraq dizayn edilib:',
+    'safety.1':'Tamamilə kompüterinizdə işləyir — heç bir məlumat heç yerə yüklənmir.',
+    'safety.2':'Açıq mənbəlidir, beləliklə istənilən şəxs (texniki biliyi olan könüllünüz, Access Now, pen tester) kodu audit edə bilər.',
+    'safety.3':'Hər fəaliyyət yerli olaraq qeyd olunur ki, dəyişikliklər nəzərdən keçirilə və ya geri qaytarıla bilsin.',
+    'safety.4':'Oflayn işləyir — Wi-Fi hələ də təhlükəli sayılırsa, bu vacibdir.',
+    'footer':'CyberShield Hardener peşəkar insident cavabını əvəz etmir. QHT-niz aktiv hücum altındadırsa, dərhal <a href="mailto:help@accessnow.org">help@accessnow.org</a> ilə əlaqə saxlayın.'
+  },
+  ru: {
+    'app.tagline':'Набор для реагирования на инциденты для НКО',
+    'nav.assessment':'Оценка','nav.resources':'Ресурсы',
+    'nav.download.full':'Скачать инструмент для Windows','nav.download.short':'Скачать',
+    'back':'← Назад к плану действий',
+    'hero.pill':'Рекомендуемое дополнение для пользователей Windows',
+    'hero.h1':'CyberShield Hardener <br/>— помощник для Windows',
+    'hero.lead':'Небольшое настольное приложение, которое в один клик выполняет подобранный набор команд PowerShell для укрепления ПК — те же, что ввёл бы вручную ваш ИТ-отдел. Сделано для НКО без штатного сисадмина.',
+    'hero.bat':'⬇ Скачать лаунчер (.bat)','hero.ps1':'⬇ Скачать скрипт (.ps1)','hero.see':'Что он делает',
+    'hero.version':'v0.1 · Превью','hero.req':'Бесплатно, с открытым исходным кодом, требуется Windows 10 / 11.',
+    'banner':'<strong>Инструмент доступен.</strong> Скачайте лаунчер <code>.bat</code> и скрипт <code>.ps1</code> (держите их в одной папке), щёлкните по <code>.bat</code> правой кнопкой и выберите <em>Запуск от имени администратора</em>. Все проверки только читают — инструмент ничего не меняет. В комплект входит и <code>Build-Exe.ps1</code> — одним кликом скомпилируете подписанный <code>.exe</code>.',
+    'wit.title':'Что делает инструмент',
+    'wit.sub':'CyberShield Hardener — это небольшой GUI поверх PowerShell. Перед каждым действием он запрашивает разрешение, показывает точную команду, которую выполнит, и всё логирует, чтобы ваш ИТ-специалист мог потом всё проверить.',
+    'feat.def.t':'Проверка Windows Defender','feat.def.d':'Проверяет включение защиты в реальном времени, свежесть сигнатур и запускает быстрое сканирование.',
+    'feat.fw.t':'Аудит фаервола','feat.fw.d':'Убеждается, что все три профиля фаервола включены, и перечисляет рискованные входящие правила.',
+    'feat.bl.t':'Проверка BitLocker','feat.bl.d':'Показывает статус шифрования диска и предлагает включить его для системного тома.',
+    'feat.up.t':'Статус обновлений','feat.up.d':'Показывает ожидающие обновления Windows и отсутствующие патчи безопасности.',
+    'feat.ac.t':'Обзор учётных записей','feat.ac.d':'Показывает локальных админов, активные гостевые аккаунты и слабые политики паролей.',
+    'feat.st.t':'Очистка автозапуска','feat.st.d':'Перечисляет неизвестные программы автозапуска и запланированные задачи для быстрого просмотра.',
+    'feat.net.t':'DNS и сеть','feat.net.d':'Отмечает подозрительные настройки DNS, прокси-переопределения и неизвестные записи в файле hosts.',
+    'feat.ev.t':'Пакет доказательств','feat.ev.d':'Экспортирует подписанный .zip с логами, который можно отправить на горячую линию реагирования на инциденты.',
+    'cmds.title':'Примеры команд, которые будут выполнены','cmds.sub':'Каждая команда требует подтверждения кликом. В фоне ничего не выполняется молча.',
+    'dl.title':'Скачать и установить',
+    'dl.step1':'<strong>Скачайте установщик.</strong> <span class="muted">Подписанный <code>.exe</code> (~8 МБ) скоро появится здесь.</span>',
+    'dl.step2':'<strong>Проверьте подпись.</strong> Щёлкните по файлу правой кнопкой → Свойства → Цифровые подписи и убедитесь, что подписано «CyberShield Project».',
+    'dl.step3':'<strong>Запустите от имени администратора.</strong> Большинству команд нужны повышенные привилегии.',
+    'dl.step4':'<strong>Выберите нужные проверки.</strong> Каждая показывает команду PowerShell и просит подтверждение.',
+    'dl.step5':'<strong>Экспортируйте пакет доказательств.</strong> Прикрепите его к вашему плану CyberShield, когда попросите помощь у эксперта.',
+    'dl.buildexe':'⬇ Build-Exe (.ps1)','dl.instructions':'📖 Инструкции','dl.return':'← Вернуться к плану действий',
+    'dl.roadmap':'Помощники для macOS и Linux в планах. Если хотите помочь с портированием, откройте issue в репозитории проекта.',
+    'safety.title':'Безопасность и приватность','safety.sub':'CyberShield Hardener спроектирован с учётом моделей угроз для НКО:',
+    'safety.1':'Работает полностью на вашем компьютере — никуда ничего не отправляется.',
+    'safety.2':'Открытый код — любой (ваш технически подкованный волонтёр, Access Now, пен-тестер) может проверить код.',
+    'safety.3':'Каждое действие логируется локально, так что изменения можно проверить или откатить.',
+    'safety.4':'Работает офлайн — важно, если Wi-Fi всё ещё считается небезопасным.',
+    'footer':'CyberShield Hardener не заменяет профессиональное реагирование на инциденты. Если ваша НКО под активной атакой, немедленно свяжитесь с <a href="mailto:help@accessnow.org">help@accessnow.org</a>.'
+  }
+};
+
+let currentLang = 'en';
+try {
+  const saved = localStorage.getItem('cs-lang');
+  if (saved && LANGS.includes(saved)) currentLang = saved;
+} catch(e) {}
+
+function t(key){
+  const dict = I18N[currentLang] || I18N.en;
+  return dict[key] !== undefined ? dict[key] : (I18N.en[key] !== undefined ? I18N.en[key] : key);
+}
+
+function applyTranslations(){
+  document.documentElement.setAttribute("lang", currentLang);
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    const val = t(key);
+    if (el.hasAttribute("data-i18n-html")) el.innerHTML = val;
+    else el.textContent = val;
+  });
+  document.querySelectorAll(".lang-switch button[data-lang]").forEach(b=>{
+    b.setAttribute("aria-pressed", b.getAttribute("data-lang")===currentLang ? "true" : "false");
+  });
+}
+
+function setLang(lang){
+  if (!LANGS.includes(lang)) return;
+  currentLang = lang;
+  try { localStorage.setItem('cs-lang', lang); } catch(e) {}
+  applyTranslations();
+}
+
+document.querySelectorAll(".lang-switch button[data-lang]").forEach(b=>{
+  b.addEventListener("click",()=>setLang(b.getAttribute("data-lang")));
+});
+
+applyTranslations();
+</script>
 </body>
 </html>

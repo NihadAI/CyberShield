@@ -8,6 +8,7 @@ A free, static website that walks NGOs, activists and journalists through a 7-st
 |------|---------|
 | `ngo-incident-response.html` | Main assessment builder (landing + wizard + generated plan). |
 | `windows-tool.html` | Landing page for the CyberShield Hardener Windows tool. |
+| `tools/` | The real Windows tool — PowerShell + WinForms GUI, plus launcher scripts. See [`tools/README.md`](tools/README.md). |
 | `robots.txt` | Allows all crawlers and points to the sitemap. |
 | `sitemap.xml` | Lists both public pages for Google Search Console. |
 | `vercel.json` | Clean URLs, redirects, security headers, caching config. |
@@ -84,4 +85,3 @@ vercel --prod     # subsequent pushes to main deploy automatically
 ## License
 
 Free to use and adapt for humanitarian purposes. If you redistribute, please credit the original project and keep the Access Now helpline links intact — they save lives.
-# CyberShield
